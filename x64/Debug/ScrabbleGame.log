@@ -1,0 +1,5 @@
+﻿  Window.cpp
+  main.cpp
+D:\ScrabbleGame\main.cpp(42,93): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Generating Code...
+  ScrabbleGame.vcxproj -> D:\ScrabbleGame\x64\Debug\ScrabbleGame.exe

@@ -1,0 +1,10 @@
+﻿  FontLoader.cpp
+  main.cpp
+  TextWriter.cpp
+  Window.cpp
+  Generating code
+  110 of 110 functions (100.0%) were compiled.
+    109 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  ScrabbleGame.vcxproj -> D:\ScrabbleGame\x64\Release\ScrabbleGame.exe

@@ -1,53 +1,58 @@
 #include <iostream>
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
+#include <SFML/Graphics.hpp>
 
 class Window {
-	// TOOD: 
-	// sa facem meniu de setari inainte sa intre in joc si sa iti poti seta rezolutia, sa nu mai fie asta pusa default
 private:
-	int width = 800;
-	int height = 600;
+	// instanta de fereastra din SFML
+	sf::RenderWindow* window;
+	int width;
+	int height;
 
 public:
-	GLFWwindow* window;
-	Window() {
-		// Initiating the window and its context
-		glfwInit();
-		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-
-		// Creating the proper window.
-		this->window = glfwCreateWindow(this->width, this->height, "Scrabble Gamification", NULL, NULL);
+	Window(int width, int height) {
+		this->width = width;
+		this->height = height;
+		this->window = new sf::RenderWindow(sf::VideoMode(this->width, this->height), "Scrabble Game");
 
 		if (!this->window) {
-			std::cout << "Failed to create the instance of window. Terminating...\n";
-			glfwTerminate();
+			std::cout << "Failed to init the window... Terminating";
+			exit(1);
 		}
-
-		// Telling GLFW what is the window to display
-		glfwMakeContextCurrent(this->window);
 	}
 
-	// Window destructor, should only get called when the game is closed
 	~Window() {
-		glfwDestroyWindow(this->window);
-		glfwTerminate();
+		this->window->close();
 	}
 
-	// A method to swap the back buffer with the front buffer
-	// Ref: https://learnopengl.com/Advanced-OpenGL/Framebuffers
-	void swapBuffers() {
-		glfwSwapBuffers(this->window);
+	// Metoda care primeste referinta catre un text si il scrie pe ecran
+	void drawText(sf::Text& x) {
+		this->window->draw(x);
+	}
+
+	/*
+	*	Metoda care verifica daca fereastra de SFML e inca deschisa
+	*	@returns true daca e deschisa false daca nu mai e deschisa(folosim in gameloop)
+	*/
+	bool isOpen() {
+		if (this->window->isOpen()) return true;
+		return false;
+	}
+
+	// Metoda care apeleaza metoda display din SFML
+	void display() {
+		this->window->display();
 	}
 
 	// getters
+	int getWidth() {
+		return this->width;
+	}
+
 	int getHeight() {
 		return this->height;
 	}
 
-	int getWidth() {
-		return this->width;
+	sf::RenderWindow* getWindow() {
+		return this->window;
 	}
-}; 
+};

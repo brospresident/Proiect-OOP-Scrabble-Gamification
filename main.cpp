@@ -1,27 +1,56 @@
 #include <iostream>
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
+#include <direct.h>
 
-#include "./Window.cpp"
+#include <SFML/Graphics.hpp>
+
+// Imports
+#include "Window.cpp"
+#include "TextWriter.cpp"
 
 int main() {
-	// Creating the window for the game object
-	Window* gameWindow = new Window();
+    // creez fereastra jocului
+    Window *window = new Window(800, 600);
 
-	// Loading GLAD
-	gladLoadGL();
+    // incarc fontul pe care il vom folosi in joc
+    sf::Font gameFont;
+    if (!gameFont.loadFromFile("lato.ttf")) {
+        std::cout << "Failed to load the font... Check the path." << std::endl;
+        return EXIT_FAILURE;
+    }
 
-	// Setting the viewport of the screen using the width and height of the window
-	glViewport(0, 0, gameWindow->getWidth(), gameWindow->getHeight());
+    // gameloop
+    while (window->isOpen()) {
+        // definesc un event
+        sf::Event event;
 
-	// setting a background color
-	glClearColor(0.123f, 0.248f, 0.17f, 1.0f);
-	glClear(GL_COLOR_BUFFER_BIT);
-	gameWindow->swapBuffers();
+        // la fiecare event intampinat fac cate o actiune
+        while (window->getWindow()->pollEvent(event)) {
+            if (event.type == sf::Event::Closed)
+                window->~Window();
 
-	// gameloop that only finishes when the window gets terminated
-	while (!glfwWindowShouldClose(gameWindow->window)) {
-		glfwPollEvents();
-	}
+            if (event.type == sf::Event::KeyPressed) {
+                std::cout << "Key pressed: " << event.key.code << std::endl;
+            }
+
+            if (event.type == sf::Event::MouseButtonPressed) {
+                std::cout << "Mouse button clicked " << std::endl;
+            }
+        }
+
+        // afisez ceva pe ecran
+        window->getWindow()->clear();
+        TextWriter* gameTitle = new TextWriter("Scrabble", 35, gameFont, window->getWidth() / 2, 5.0f);
+        gameTitle->setColorRed();
+        window->drawText(gameTitle->text);
+        window->display();
+        
+        // bug fix cand se trece de o iteratie
+        // practic la fiecare iteratie prin while era creat un nou obiect TextWriter unde scria scrabble
+        // astfel memoria ocupata crestea exponential in cateva secunde 
+        // textele se suprapuneau si ocupau memorie pana dadea crash
+        // de retinut cand folosim TextWriter sa ii dam imediat delete dupa ce il afisam
+        delete gameTitle;
+    }
+
 	return 0;
 }

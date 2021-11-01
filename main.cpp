@@ -6,10 +6,14 @@
 // Imports
 #include "Window.cpp"
 #include "TextWriter.cpp"
+#include "Misc.cpp"
+#include "Player.cpp"
 
 int main() {
     // creez fereastra jocului
     Window *window = new Window(800, 600);
+
+    int gamePhase = -1;
 
     // incarc fontul pe care il vom folosi in joc
     sf::Font gameFont;
@@ -18,8 +22,12 @@ int main() {
         return EXIT_FAILURE;
     }
 
+    gamePhase = GamePhases::RegisteringPlayer1;
+
     // gameloop
     while (window->isOpen()) {
+        // fac clear la window. Trebuie facut clear la fiecare iteratie
+        window->clear();
         // definesc un event
         sf::Event event;
 
@@ -30,6 +38,9 @@ int main() {
 
             if (event.type == sf::Event::KeyPressed) {
                 std::cout << "Key pressed: " << event.key.code << std::endl;
+                if (gamePhase == GamePhases::RegisteringPlayer1) {
+
+                }
             }
 
             if (event.type == sf::Event::MouseButtonPressed) {
@@ -37,20 +48,25 @@ int main() {
             }
         }
 
-        // afisez ceva pe ecran
-        window->getWindow()->clear();
-        TextWriter* gameTitle = new TextWriter("Scrabble", 35, gameFont, window->getWidth() / 2, 5.0f);
-        gameTitle->setColorRed();
-        window->drawText(gameTitle->text);
-        window->display();
-        
-        // bug fix cand se trece de o iteratie
-        // practic la fiecare iteratie prin while era creat un nou obiect TextWriter unde scria scrabble
-        // astfel memoria ocupata crestea exponential in cateva secunde 
-        // textele se suprapuneau si ocupau memorie pana dadea crash
-        // de retinut cand folosim TextWriter sa ii dam imediat delete dupa ce il afisam
-        delete gameTitle;
+        if (gamePhase >= 0) {
+            Player player1;
+            Player player2;
+            TextWriter playerNameInput("Please type your name: ", 15, gameFont, window->getWidth() / 2, window->getHeight() / 4);
+
+            if (gamePhase == GamePhases::RegisteringPlayer1) {
+                window->drawText(playerNameInput.text);
+                
+            }
+
+            TextWriter gameTitle("Scrabble", 35, gameFont, window->getWidth() / 2, 5.0f);
+            gameTitle.setColorRed();
+            window->drawText(gameTitle.text);
+
+            window->display();
+        }
     }
+
+    delete window;
 
 	return 0;
 }

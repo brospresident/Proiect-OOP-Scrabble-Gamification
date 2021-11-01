@@ -18,6 +18,8 @@ public:
 		this->setPosition(x, y);
 	}
 
+	TextWriter() {}
+
 	// setters
 	void setFont(sf::Font font) {
 		this->font = font;

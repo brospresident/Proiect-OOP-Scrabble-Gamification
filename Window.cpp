@@ -43,13 +43,17 @@ public:
 		this->window->display();
 	}
 
-	// getters
-	int getWidth() {
-		return this->width;
+	void clear() {
+		this->window->clear();
 	}
 
-	int getHeight() {
-		return this->height;
+	// getters
+	float getWidth() {
+		return (float)this->width;
+	}
+
+	float getHeight() {
+		return (float)this->height;
 	}
 
 	sf::RenderWindow* getWindow() {

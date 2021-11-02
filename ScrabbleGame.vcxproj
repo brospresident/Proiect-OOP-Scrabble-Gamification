@@ -20,8 +20,16 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Misc.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="TextWriter.cpp" />
     <ClCompile Include="Window.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Misc.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="TextWriter.h" />
+    <ClInclude Include="Window.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

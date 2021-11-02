@@ -1,40 +1,72 @@
 #include <iostream>
 #include <string>
+#include <vector>
 
-class Player {
-private:
-	std::string playerName;
-	int score = 0;
+#include "Player.h"
 
-public:
-	Player(std::string playerName) {
-		if (playerName.size() == 0) {
-			this->playerName = "Player";
-		}
-		else this->playerName = playerName;
+Player::Player(std::string playerName, int id) {
+	if (playerName.size() == 0) {
+		this->playerName = "Player";
 	}
-	
-	Player() {
-		this->playerName = "";
+	else this->playerName = playerName;
+	this->id = id;
+}
+
+Player::Player() {
+	this->playerName = "";
+}
+
+// getters
+std::string Player::getPlayerName() {
+	return this->playerName;
+}
+
+int Player::getPlayerScore() {
+	return this->score;
+}
+
+int Player::getPlayerId() {
+	return this->id;
+}
+
+// setters
+void Player::setPlayerName(std::string playerName) {
+	this->playerName = playerName;
+}
+
+void Player::setPlayerScore(int score) {
+	this->score = score;
+}
+
+void Player::setPlayerId(int id) {
+	this->id = id;
+}
+
+std::vector<TextWriter*> Player::dataToString(const sf::Font& font, const float width, const float height) {
+	std::vector<TextWriter*> res;
+	if (this->id == 0) {
+		TextWriter* playerName = new TextWriter(this->getPlayerName(), 25, font, 3.0f, height / 5.0f);
+		playerName->underline();
+		std::string scoreString = "Score: ";
+		scoreString.append(std::to_string(this->getPlayerScore()));
+
+		TextWriter* playerScore = new TextWriter(scoreString, 15, font, 3.0f, height / 4.0f);
+		
+		res.push_back(playerName);
+		res.push_back(playerScore);
+	}
+	else {
+		TextWriter* playerName = new TextWriter(this->getPlayerName(), 25, font, width - (this->getPlayerName().size() * 25), height / 5.0f);
+		playerName->underline();
+		std::string scoreString = "Score: ";
+		scoreString.append(std::to_string(this->getPlayerScore()));
+
+		TextWriter* playerScore = new TextWriter(scoreString, 15, font, width - (15 * scoreString.size()), height / 4.0f);
+
+		res.push_back(playerName);
+		res.push_back(playerScore);
 	}
 
-	// getters
-	std::string getPlayerName() {
-		return this->playerName;
-	}
+	return res;
+}
 
-	int getPlayerScore() {
-		return this->score;
-	}
-
-	// setters
-	void setPlayerName(std::string playerName) {
-		this->playerName = playerName;
-	}
-
-	void setPlayerScore(int score) {
-		this->score = score;
-	}
-
-
-};

@@ -1,17 +1,17 @@
 #include <iostream>
-#include <direct.h>
 
 #include <SFML/Graphics.hpp>
 
 // Imports
-#include "Window.cpp"
-#include "TextWriter.cpp"
-#include "Misc.cpp"
-#include "Player.cpp"
+#include "Window.h"
+#include "TextWriter.h"
+#include "Misc.h"
+#include "Player.h"
 
 int main() {
     // creez fereastra jocului
-    Window *window = new Window(800, 600);
+    Window *window = new Window(1024, 768);
+    Misc misc;
 
     int gamePhase = -1;
 
@@ -22,7 +22,12 @@ int main() {
         return EXIT_FAILURE;
     }
 
-    gamePhase = GamePhases::RegisteringPlayer1;
+    gamePhase = misc.GamePhases::RegisteringPlayer1;
+
+    std::string playerName;
+
+    Player player1;
+    Player player2;
 
     // gameloop
     while (window->isOpen()) {
@@ -37,27 +42,79 @@ int main() {
                 window->~Window();
 
             if (event.type == sf::Event::KeyPressed) {
-                std::cout << "Key pressed: " << event.key.code << std::endl;
-                if (gamePhase == GamePhases::RegisteringPlayer1) {
-
+                // Registering the 1st player into the game
+                if (gamePhase == misc.GamePhases::RegisteringPlayer1) {
+                    std::string key = misc.keyCodeToString(event.key.code);
+                    if (key.compare(misc.UNKNOWN_CHARACTER)) {
+                        playerName.append(key);
+                    }
                 }
-            }
 
-            if (event.type == sf::Event::MouseButtonPressed) {
-                std::cout << "Mouse button clicked " << std::endl;
+                // Registering the 2nd player into the game
+                if (gamePhase == misc.GamePhases::RegisteringPlayer2) {
+                    std::string key = misc.keyCodeToString(event.key.code);
+                    if (key.compare(misc.UNKNOWN_CHARACTER)) {
+                        playerName.append(key);
+                    }
+                }
+
+                // On press ENTER
+                if (event.key.code == sf::Keyboard::Enter) {
+                    if (gamePhase == misc.GamePhases::RegisteringPlayer1) {
+                        player1 = Player(playerName, 0);
+                    }
+                    else if (gamePhase == misc.GamePhases::RegisteringPlayer2) {
+                        player2 = Player(playerName, 1);
+                        std::cout << "DEBUG: Player2 name: " << player2.getPlayerName() << "\n";
+                    }
+                    playerName.clear();
+                    gamePhase++;
+                }
+
+                // Close the game using ESC
+                if (event.key.code == sf::Keyboard::Escape) {
+                    window->~Window();
+                }
+
+                // Handle for mouse clicks
+                if (event.type == sf::Event::MouseButtonPressed) {
+                    std::cout << "Mouse button clicked " << std::endl;
+                }
             }
         }
 
         if (gamePhase >= 0) {
-            Player player1;
-            Player player2;
-            TextWriter playerNameInput("Please type your name: ", 15, gameFont, window->getWidth() / 2, window->getHeight() / 4);
-
-            if (gamePhase == GamePhases::RegisteringPlayer1) {
+            if (gamePhase == misc.GamePhases::RegisteringPlayer1) {
+                TextWriter playerNameInput("Please type player 1 name: ", 15, gameFont, window->getWidth() / 2, window->getHeight() / 4.0f);
+                TextWriter inputPreview(playerName, 15, gameFont, window->getWidth() / 2, window->getHeight() / 3.0f);
                 window->drawText(playerNameInput.text);
-                
+                window->drawText(inputPreview.text);
             }
+            else if (gamePhase == misc.GamePhases::RegisteringPlayer2) {
+                TextWriter playerNameInput("Please type player 2 name: ", 15, gameFont, window->getWidth() / 2, window->getHeight() / 4.0f);
+                TextWriter inputPreview(playerName, 15, gameFont, window->getWidth() / 2, window->getHeight() / 3.0f);
+                window->drawText(playerNameInput.text);
+                window->drawText(inputPreview.text);
+            }
+            else if (gamePhase == misc.GamePhases::Playing) {
+                std::vector<TextWriter*> d1 = player1.dataToString(gameFont, window->getWidth(), window->getHeight());
+                std::vector<TextWriter*> d2 = player2.dataToString(gameFont, window->getWidth(), window->getHeight());
 
+                window->drawText(d1[0]->text);
+                window->drawText(d1[1]->text);
+                window->drawText(d2[0]->text);
+                window->drawText(d2[1]->text);
+
+                // After each iteration I free the memory
+                // If I dont free the memory then it will reach a situation where it doesnt fit into the ram...
+                for (auto x : d1) {
+                    delete x;
+                }
+
+                for (auto x : d2) {
+                    delete x;
+                }
+            }
             TextWriter gameTitle("Scrabble", 35, gameFont, window->getWidth() / 2, 5.0f);
             gameTitle.setColorRed();
             window->drawText(gameTitle.text);

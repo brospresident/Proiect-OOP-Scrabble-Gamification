@@ -1,62 +1,59 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 
-class Window {
-private:
-	// instanta de fereastra din SFML
-	sf::RenderWindow* window;
-	int width;
-	int height;
+#include "Window.h"
 
-public:
-	Window(int width, int height) {
-		this->width = width;
-		this->height = height;
-		this->window = new sf::RenderWindow(sf::VideoMode(this->width, this->height), "Scrabble Game");
+Window::Window(int width, int height) {
+	this->width = width;
+	this->height = height;
+	this->window = new sf::RenderWindow(sf::VideoMode(this->width, this->height), "Scrabble Game");
 
-		if (!this->window) {
-			std::cout << "Failed to init the window... Terminating";
-			exit(1);
-		}
+	if (!this->window) {
+		std::cout << "Failed to init the window... Terminating";
+		exit(1);
 	}
+}
 
-	~Window() {
-		this->window->close();
-	}
+Window::Window() {
+	this->width = 800;
+	this->height = 600;
+	this->window = new sf::RenderWindow(sf::VideoMode(this->width, this->height), "Scrabble Game");
 
-	// Metoda care primeste referinta catre un text si il scrie pe ecran
-	void drawText(sf::Text& x) {
-		this->window->draw(x);
+	if (!this->window) {
+		std::cout << "Failed to init the window... Terminating";
+		exit(1);
 	}
+}
 
-	/*
-	*	Metoda care verifica daca fereastra de SFML e inca deschisa
-	*	@returns true daca e deschisa false daca nu mai e deschisa(folosim in gameloop)
-	*/
-	bool isOpen() {
-		if (this->window->isOpen()) return true;
-		return false;
-	}
+Window::~Window() {
+	this->window->close();
+}
 
-	// Metoda care apeleaza metoda display din SFML
-	void display() {
-		this->window->display();
-	}
+void Window::drawText(sf::Text x) {
+	this->window->draw(x);
+}
 
-	void clear() {
-		this->window->clear();
-	}
+bool Window::isOpen() {
+	if (this->window->isOpen()) return true;
+	return false;
+}
 
-	// getters
-	float getWidth() {
-		return (float)this->width;
-	}
+void Window::display() {
+	this->window->display();
+}
 
-	float getHeight() {
-		return (float)this->height;
-	}
+void Window::clear() {
+	this->window->clear();
+}
 
-	sf::RenderWindow* getWindow() {
-		return this->window;
-	}
-};
+float Window::getWidth() {
+	return (float)this->width;
+}
+
+float Window::getHeight() {
+	return (float)this->height;
+}
+
+sf::RenderWindow* Window::getWindow() {
+	return this->window;
+}

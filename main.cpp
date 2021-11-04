@@ -70,6 +70,12 @@ int main() {
                     playerName.clear();
                     gamePhase++;
                 }
+                // BACKSPACE functionality to remove a character when typing name
+                else if (event.key.code == sf::Keyboard::BackSpace) {
+                    if (gamePhase == misc.GamePhases::RegisteringPlayer1 || gamePhase == misc.GamePhases::RegisteringPlayer2) {
+                        playerName = misc.removeLastCharacter(playerName);
+                    }
+                }
 
                 // Close the game using ESC
                 if (event.key.code == sf::Keyboard::Escape) {

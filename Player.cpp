@@ -56,12 +56,12 @@ std::vector<TextWriter*> Player::dataToString(const sf::Font& font, const float 
 		res.push_back(playerScore);
 	}
 	else {
-		TextWriter* playerName = new TextWriter(this->getPlayerName(), 25, font, width - (this->getPlayerName().size() * 25), height / 5.0f);
+		TextWriter* playerName = new TextWriter(this->getPlayerName(), 25, font, width - (this->getPlayerName().size() * 15.0f), height / 5.0f);
 		playerName->underline();
 		std::string scoreString = "Score: ";
 		scoreString.append(std::to_string(this->getPlayerScore()));
 
-		TextWriter* playerScore = new TextWriter(scoreString, 15, font, width - (15 * scoreString.size()), height / 4.0f);
+		TextWriter* playerScore = new TextWriter(scoreString, 15, font, width - (scoreString.size() * 9.0f), height / 4.0f);
 
 		res.push_back(playerName);
 		res.push_back(playerScore);

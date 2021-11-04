@@ -1,5 +1,8 @@
 #pragma once
 
+#ifndef _TEXT_WRITER_
+#define _TEXT_WRITER_
+
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <string>
@@ -32,3 +35,5 @@ public:
 
 	void move(float x, float y);
 };
+
+#endif // !_TEXT_WRITER_

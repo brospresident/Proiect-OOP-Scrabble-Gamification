@@ -1,5 +1,8 @@
 #pragma once
 
+#ifndef _PLAYER_
+#define _PLAYER_
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -35,3 +38,4 @@ public:
 	std::vector<TextWriter*> dataToString(const sf::Font& font, const float width, const float height);
 };
 
+#endif // !_PLAYER_

@@ -1,4 +1,8 @@
 #pragma once
+
+#ifndef _WINDOW_
+#define _WINDOW
+
 #include <iostream>
 #include <SFML/Graphics.hpp>
 
@@ -37,3 +41,5 @@ public:
 
 	sf::RenderWindow* getWindow();
 };
+
+#endif // !_WINDOW_

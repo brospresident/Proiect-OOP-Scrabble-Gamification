@@ -63,3 +63,7 @@ std::string Misc::keyCodeToString(int key) {
 		return "Unknown";
 	}
 }
+
+std::string Misc::removeLastCharacter(std::string str) {
+	return str.substr(0, str.size() - 1);
+}

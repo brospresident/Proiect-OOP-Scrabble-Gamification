@@ -33,6 +33,15 @@ void Window::drawText(sf::Text x) {
 	this->window->draw(x);
 }
 
+void Window::drawSprite(sf::Sprite s) {
+	this->window->draw(s);
+}
+
+void Window::drawButton(Button& b) {
+	this->drawSprite(b.getSprite());
+	this->drawText(b.getTextWriter()->text);
+}
+
 bool Window::isOpen() {
 	if (this->window->isOpen()) return true;
 	return false;

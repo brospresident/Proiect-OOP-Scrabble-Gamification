@@ -67,3 +67,20 @@ std::string Misc::keyCodeToString(int key) {
 std::string Misc::removeLastCharacter(std::string str) {
 	return str.substr(0, str.size() - 1);
 }
+
+std::vector<std::string> Misc::randomCharList() {
+	std::vector<std::string> list;
+	srand(time(NULL));
+	int randNumber = rand() % 25;
+	std::string l = this->keyCodeToString(randNumber);
+	list.push_back(l);
+
+	while (list.size() < 7) {
+		srand(randNumber);
+		randNumber = rand() % 25;
+		std::string l = this->keyCodeToString(randNumber);
+		list.push_back(l);
+	}
+
+	return list;
+}

@@ -19,15 +19,19 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Misc.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TextWriter.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Button.h" />
     <ClInclude Include="Misc.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Texture.h" />
     <ClInclude Include="TextWriter.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>

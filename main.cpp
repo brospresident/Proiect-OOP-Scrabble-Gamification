@@ -7,11 +7,18 @@
 #include "TextWriter.h"
 #include "Misc.h"
 #include "Player.h"
+#include "Button.h"
 
 int main() {
-    // creez fereastra jocului
+    // Creating the game window
     Window *window = new Window(1024, 768);
     Misc misc;
+
+    // std::vector<std::string> randomChar = misc.randomCharList();
+
+    // for (std::string s : randomChar) {
+        // std::cout << s << " ";
+    // }
 
     int gamePhase = -1;
 
@@ -65,7 +72,6 @@ int main() {
                     }
                     else if (gamePhase == misc.GamePhases::RegisteringPlayer2) {
                         player2 = Player(playerName, 1);
-                        std::cout << "DEBUG: Player2 name: " << player2.getPlayerName() << "\n";
                     }
                     playerName.clear();
                     gamePhase++;
@@ -110,6 +116,9 @@ int main() {
                 window->drawText(d1[1]->text);
                 window->drawText(d2[0]->text);
                 window->drawText(d2[1]->text);
+
+                Button testButton = Button("Hello button", "assets/buttons/1.jpg", window->getWidth() / 2, 620, 128, 32, 0, gameFont);
+                window->drawButton(testButton);
 
                 // After each iteration I free the memory
                 // If I dont free the memory then it will reach a situation where it doesnt fit into the ram...

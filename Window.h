@@ -6,6 +6,8 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 
+#include "Button.h"
+
 class Window {
 private:
 	// instanta de fereastra din SFML
@@ -22,6 +24,12 @@ public:
 
 	// Metoda care primeste referinta catre un text si il scrie pe ecran
 	void drawText(sf::Text x);
+
+	// Metoda care primeste un sprite si il randeaza
+	void drawSprite(sf::Sprite s);
+
+	// Metoda care primeste un buton si il randeaza
+	void drawButton(Button& b);
 
 	/*
 	*	Metoda care verifica daca fereastra de SFML e inca deschisa

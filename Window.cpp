@@ -37,10 +37,10 @@ void Window::drawSprite(sf::Sprite s) {
 	this->window->draw(s);
 }
 
-void Window::drawButton(Button& b) {
+/*void Window::drawButton(Button& b) {
 	this->drawSprite(b.getSprite());
 	this->drawText(b.getTextWriter()->text);
-}
+}*/
 
 bool Window::isOpen() {
 	if (this->window->isOpen()) return true;
@@ -65,4 +65,10 @@ float Window::getHeight() {
 
 sf::RenderWindow* Window::getWindow() {
 	return this->window;
+}
+
+sf::Vector2f Window::getMousePosition() {
+	sf::Vector2i mousePos = sf::Mouse::getPosition(*this->getWindow()); // Mouse position relative to the window
+	sf::Vector2f translatedPos = this->getWindow()->mapPixelToCoords(mousePos); // Mouse position translated into world
+	return translatedPos;
 }

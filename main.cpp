@@ -48,6 +48,12 @@ int main() {
             if (event.type == sf::Event::Closed)
                 window->~Window();
 
+            // Handle for mouse clicks
+            if (event.type == sf::Event::MouseButtonPressed) {
+                sf::Vector2f mousePos = window->getMousePosition();
+                std::cout << "Mouse position(x, y): " << mousePos.x << " " << mousePos.y << std::endl;
+            }
+
             if (event.type == sf::Event::KeyPressed) {
                 // Registering the 1st player into the game
                 if (gamePhase == misc.GamePhases::RegisteringPlayer1) {
@@ -87,11 +93,6 @@ int main() {
                 if (event.key.code == sf::Keyboard::Escape) {
                     window->~Window();
                 }
-
-                // Handle for mouse clicks
-                if (event.type == sf::Event::MouseButtonPressed) {
-                    std::cout << "Mouse button clicked " << std::endl;
-                }
             }
         }
 
@@ -117,8 +118,7 @@ int main() {
                 window->drawText(d2[0]->text);
                 window->drawText(d2[1]->text);
 
-                Button testButton = Button("Hello button", "assets/buttons/1.jpg", window->getWidth() / 2, 620, 128, 32, 0, gameFont);
-                window->drawButton(testButton);
+                Button testButton = Button("Hello button", "assets/buttons/1.jpg", window->getWidth() / 2, 620, 128, 32, misc.BUTTON_BOARD_SQUARE, gameFont, window);
 
                 // After each iteration I free the memory
                 // If I dont free the memory then it will reach a situation where it doesnt fit into the ram...

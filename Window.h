@@ -6,8 +6,6 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 
-#include "Button.h"
-
 class Window {
 private:
 	// instanta de fereastra din SFML
@@ -29,7 +27,7 @@ public:
 	void drawSprite(sf::Sprite s);
 
 	// Metoda care primeste un buton si il randeaza
-	void drawButton(Button& b);
+	// void drawButton(Button& b);
 
 	/*
 	*	Metoda care verifica daca fereastra de SFML e inca deschisa
@@ -48,6 +46,13 @@ public:
 	float getHeight();
 
 	sf::RenderWindow* getWindow();
+
+	// https://en.sfml-dev.org/forums/index.php?topic=21666.0
+	/*
+		Metoda care intoarce pozitia mouseului
+		@returns mouse position as a Vector2f
+	*/
+	sf::Vector2f getMousePosition();
 };
 
 #endif // !_WINDOW_

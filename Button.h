@@ -8,6 +8,7 @@
 #include "SFML/Graphics.hpp"
 #include "TextWriter.h"
 #include "Texture.h"
+#include "Window.h"
 
 class Button : public Texture {
 private:
@@ -16,10 +17,12 @@ private:
 	TextWriter* tw;
 	sf::Sprite sprite;
 	int type;
+	sf::Vector2f knownMousePos;
+	Window* window;
 
 public:
 	Button();
-	Button(const std::string, const std::string, const float, const float, const float, const float, const int, const sf::Font);
+	Button(const std::string, const std::string, const float, const float, const float, const float, const int, const sf::Font, Window*);
 	~Button();
 
 	// getters
@@ -32,6 +35,11 @@ public:
 	void handleEvents();
 
 	bool clicked();
+
+	void drawButton();
+
+	// setters
+	void setKnownMousePos(sf::Vector2f);
 };
 
 #endif

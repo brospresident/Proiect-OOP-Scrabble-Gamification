@@ -36,6 +36,10 @@ void TextWriter::setColorBlue() {
 	this->text.setFillColor(sf::Color::Blue);
 }
 
+void TextWriter::setColorGreen() {
+	this->text.setFillColor(sf::Color::Green);
+}
+
 void TextWriter::underline() {
 	this->text.setStyle(sf::Text::Underlined);
 }

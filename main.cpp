@@ -35,6 +35,9 @@ int main() {
 
     Player player1;
     Player player2;
+    bool shouldBeUpper = false;
+
+    
 
     // gameloop
     while (window->isOpen()) {
@@ -49,21 +52,50 @@ int main() {
                 window->~Window();
 
             if (event.type == sf::Event::KeyPressed) {
-                // Registering the 1st player into the game
-                if (gamePhase == misc.GamePhases::RegisteringPlayer1) {
-                    std::string key = misc.keyCodeToString(event.key.code);
-                    if (key.compare(misc.UNKNOWN_CHARACTER)) {
-                        playerName.append(key);
+                
+                if (shouldBeUpper == true) //daca a fost apasat shift inainte, scriem litera mare
+                {
+                    // Registering the 1st player into the game
+                    if (gamePhase == misc.GamePhases::RegisteringPlayer1) {
+                        std::string key = misc.toUpperCase(event.key.code);
+
+                        if (key.compare(misc.UNKNOWN_CHARACTER)) {
+                            playerName.append(key);
+                        }
                     }
+
+                    // Registering the 2nd player into the game
+                    if (gamePhase == misc.GamePhases::RegisteringPlayer2) {
+                        std::string key = misc.toUpperCase(event.key.code);
+
+                        if (key.compare(misc.UNKNOWN_CHARACTER)) {
+                            playerName.append(key);
+                        }
+                    }
+                    shouldBeUpper = false;  
+                }
+                else {  //daca nu a fost apasat shift inainte, scriem litera mica
+                    if (gamePhase == misc.GamePhases::RegisteringPlayer1) {
+                        std::string key = misc.keyCodeToString(event.key.code);
+
+                        if (key.compare(misc.UNKNOWN_CHARACTER)) {
+                            playerName.append(key);
+                        }
+                    }
+
+                    // Registering the 2nd player into the game
+                    if (gamePhase == misc.GamePhases::RegisteringPlayer2) {
+                        std::string key = misc.keyCodeToString(event.key.code);
+
+                        if (key.compare(misc.UNKNOWN_CHARACTER)) {
+                            playerName.append(key);
+                        }
+                    }
+                }
+                if (event.key.code == 38 || event.key.code == 42) {
+                    shouldBeUpper = true;
                 }
 
-                // Registering the 2nd player into the game
-                if (gamePhase == misc.GamePhases::RegisteringPlayer2) {
-                    std::string key = misc.keyCodeToString(event.key.code);
-                    if (key.compare(misc.UNKNOWN_CHARACTER)) {
-                        playerName.append(key);
-                    }
-                }
 
                 // On press ENTER
                 if (event.key.code == sf::Keyboard::Enter) {
@@ -97,14 +129,14 @@ int main() {
 
         if (gamePhase >= 0) {
             if (gamePhase == misc.GamePhases::RegisteringPlayer1) {
-                TextWriter playerNameInput("Please type player 1 name: ", 15, gameFont, window->getWidth() / 2, window->getHeight() / 4.0f);
-                TextWriter inputPreview(playerName, 15, gameFont, window->getWidth() / 2, window->getHeight() / 3.0f);
+                TextWriter playerNameInput("Please type player 1 name: ", 25, gameFont, window->getWidth() / 2.5, window->getHeight() / 4.0f);
+                TextWriter inputPreview(playerName, 25, gameFont, window->getWidth() / 2, window->getHeight() / 3.0f);
                 window->drawText(playerNameInput.text);
                 window->drawText(inputPreview.text);
             }
             else if (gamePhase == misc.GamePhases::RegisteringPlayer2) {
-                TextWriter playerNameInput("Please type player 2 name: ", 15, gameFont, window->getWidth() / 2, window->getHeight() / 4.0f);
-                TextWriter inputPreview(playerName, 15, gameFont, window->getWidth() / 2, window->getHeight() / 3.0f);
+                TextWriter playerNameInput("Please type player 2 name: ", 25, gameFont, window->getWidth() / 2.5, window->getHeight() / 4.0f);
+                TextWriter inputPreview(playerName, 25, gameFont, window->getWidth() / 2, window->getHeight() / 3.0f);
                 window->drawText(playerNameInput.text);
                 window->drawText(inputPreview.text);
             }
@@ -112,6 +144,12 @@ int main() {
                 std::vector<TextWriter*> d1 = player1.dataToString(gameFont, window->getWidth(), window->getHeight());
                 std::vector<TextWriter*> d2 = player2.dataToString(gameFont, window->getWidth(), window->getHeight());
 
+                d1[0]->setColorBlue();
+                d1[0]->setCharacterSize(30);
+                d2[0]->setColorRed();
+                d2[0]->setCharacterSize(30);
+                d1[1]->setCharacterSize(20);
+                d2[1]->setCharacterSize(20);
                 window->drawText(d1[0]->text);
                 window->drawText(d1[1]->text);
                 window->drawText(d2[0]->text);
@@ -130,8 +168,8 @@ int main() {
                     delete x;
                 }
             }
-            TextWriter gameTitle("Scrabble", 35, gameFont, window->getWidth() / 2, 5.0f);
-            gameTitle.setColorRed();
+            TextWriter gameTitle("Scrabble", 45, gameFont, window->getWidth() / 2.25, 5.0f);
+            gameTitle.setColorGreen();
             window->drawText(gameTitle.text);
 
             window->display();

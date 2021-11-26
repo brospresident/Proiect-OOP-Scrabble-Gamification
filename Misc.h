@@ -23,7 +23,9 @@ public:
 	};
 
 	// TODO support pentru cifre
-	std::string keyCodeToString(int key);
+	std::string keyCodeToString (int key);
+
+	std::string toUpperCase (int key);
 
 	std::string removeLastCharacter(std::string str);
 

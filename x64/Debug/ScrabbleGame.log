@@ -1,2 +1,33 @@
-﻿  main.cpp
-  ScrabbleGame.vcxproj -> D:\ScrabbleGame\x64\Debug\ScrabbleGame.exe
+﻿  Button.cpp
+  main.cpp
+C:\Users\Radcom\Desktop\Proiect-OOP-Scrabble-Gamification\main.cpp(132,108): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\Radcom\Desktop\Proiect-OOP-Scrabble-Gamification\main.cpp(138,108): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\Radcom\Desktop\Proiect-OOP-Scrabble-Gamification\main.cpp(171,79): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  Misc.cpp
+C:\Users\Radcom\Desktop\Proiect-OOP-Scrabble-Gamification\Misc.cpp(131,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  Player.cpp
+  Texture.cpp
+C:\Users\Radcom\Desktop\Proiect-OOP-Scrabble-Gamification\Texture.cpp(74,130): warning C4244: 'argument': conversion from 'float' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+C:\Users\Radcom\Desktop\Proiect-OOP-Scrabble-Gamification\Texture.cpp(74,111): warning C4244: 'argument': conversion from 'float' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+C:\Users\Radcom\Desktop\Proiect-OOP-Scrabble-Gamification\Texture.cpp(74,93): warning C4244: 'argument': conversion from 'float' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+C:\Users\Radcom\Desktop\Proiect-OOP-Scrabble-Gamification\Texture.cpp(74,76): warning C4244: 'argument': conversion from 'float' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+  TextWriter.cpp
+  Window.cpp
+  Generating Code...
+  ScrabbleGame.vcxproj -> C:\Users\Radcom\Desktop\Proiect-OOP-Scrabble-Gamification\x64\Debug\ScrabbleGame.exe

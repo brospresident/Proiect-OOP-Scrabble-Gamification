@@ -129,14 +129,22 @@ std::string Misc::removeLastCharacter(std::string str) {
 std::vector<std::string> Misc::randomCharList() {
 	std::vector<std::string> list;
 	srand(time(NULL));
-	int randNumber = rand() % 25;
+	int randNumber = rand() % 21;
+	int randNumber2 = rand() % 5;
 	std::string l = this->keyCodeToString(randNumber);
 	list.push_back(l);
 
-	while (list.size() < 7) {
+	while (list.size() < 4) {
 		srand(randNumber);
-		randNumber = rand() % 25;
+		randNumber = consonants[rand() % 21];
 		std::string l = this->keyCodeToString(randNumber);
+		list.push_back(l);
+	}
+
+	while (list.size() < 7) {
+		srand(randNumber2);
+		randNumber2 = vowels[rand() % 5];
+		std::string l = this->keyCodeToString(vowels[rand() % 5]);
 		list.push_back(l);
 	}
 

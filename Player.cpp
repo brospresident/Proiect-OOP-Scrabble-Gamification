@@ -42,6 +42,10 @@ void Player::setPlayerId(int id) {
 	this->id = id;
 }
 
+void Player::updateScore(int score1) {
+	this->score += score1;
+}
+
 std::vector<TextWriter*> Player::dataToString(const sf::Font& font, const float width, const float height) {
 	std::vector<TextWriter*> res;
 	if (this->id == 0) {

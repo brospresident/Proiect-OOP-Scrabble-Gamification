@@ -35,6 +35,8 @@ public:
 
 	void setPlayerId(int id);
 
+	void updateScore(int score1);
+
 	std::vector<TextWriter*> dataToString(const sf::Font& font, const float width, const float height);
 };
 

@@ -42,26 +42,30 @@ void Player::setPlayerId(int id) {
 	this->id = id;
 }
 
+void Player::updateScore(int score1) {
+	this->score += score1;
+}
+
 std::vector<TextWriter*> Player::dataToString(const sf::Font& font, const float width, const float height) {
 	std::vector<TextWriter*> res;
 	if (this->id == 0) {
-		TextWriter* playerName = new TextWriter(this->getPlayerName(), 25, font, 3.0f, height / 5.0f);
+		TextWriter* playerName = new TextWriter(this->getPlayerName(), 25, font, 20.0f, height / 5.0f);
 		playerName->underline();
 		std::string scoreString = "Score: ";
 		scoreString.append(std::to_string(this->getPlayerScore()));
 
-		TextWriter* playerScore = new TextWriter(scoreString, 15, font, 3.0f, height / 4.0f);
+		TextWriter* playerScore = new TextWriter(scoreString, 15, font, 20.0f, height / 4.0f);
 		
 		res.push_back(playerName);
 		res.push_back(playerScore);
 	}
 	else {
-		TextWriter* playerName = new TextWriter(this->getPlayerName(), 25, font, width - (this->getPlayerName().size() * 15.0f), height / 5.0f);
+		TextWriter* playerName = new TextWriter(this->getPlayerName(), 25, font, width - (this->getPlayerName().size() * 17.0f), height / 5.0f);
 		playerName->underline();
 		std::string scoreString = "Score: ";
 		scoreString.append(std::to_string(this->getPlayerScore()));
 
-		TextWriter* playerScore = new TextWriter(scoreString, 15, font, width - (scoreString.size() * 9.0f), height / 4.0f);
+		TextWriter* playerScore = new TextWriter(scoreString, 15, font, width - (scoreString.size() * 11.0f), height / 4.0f);
 
 		res.push_back(playerName);
 		res.push_back(playerScore);

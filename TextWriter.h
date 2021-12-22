@@ -29,6 +29,8 @@ public:
 
 	void setColorBlue();
 
+	void setColorGreen();
+
 	void underline();
 
 	void setItalic();

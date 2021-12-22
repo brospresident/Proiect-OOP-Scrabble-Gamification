@@ -3,31 +3,34 @@
 #include "Misc.h"
 
 Button::Button() {
-	this->type = 0;
+	this->type = -1;
 	this->x = 0.0f;
 	this->y = 0.0f;
 }
 
-Button::Button(const std::string str, const std::string path, const float x, const float y, const float w, const float h, const int type, sf::Font font, Window* window) {
+Button::Button(const int id, const std::string str, const std::string path, const float x, const float y, const float w, const float h, const int type, sf::Font font, Window* window, Texture texture) {
+	this->id = id;
 	tw = new TextWriter(str, 10, font, x + 5, y + 5);
 	this->x = x;
 	this->y = y;
+	this->h = h;
+	this->w = w;
 	this->type = type;
+	this->texture = texture;
+	this->str = str;
 
-	this->setPath(path);
-	this->setPosX(x);
-	this->setPosY(y);
-	this->setWidth(w);
-	this->setHeight(h);
+	this->texture.setPosX(x);
+	this->texture.setPosX(y);
+	this->texture.setHeight(h);
+	this->texture.setWidth(w);
 
-	this->loadTexture();
 	this->initSprite();
 
 	this->window = window;
 
 	//this->handleEvents();
 
-	this->drawButton();
+	//this->drawButton();
 	this->knownMousePos = sf::Vector2f(0, 0);
 }
 
@@ -48,13 +51,12 @@ void Button::setButtonPosition() {
 }
 
 void Button::initSprite() {
-	this->sprite = sf::Sprite(this->texture);
+	this->sprite = sf::Sprite(this->texture.texture);
+	this->sprite.setTextureRect(sf::IntRect(this->x, this->y, this->w, this->h));
 	this->setButtonPosition();
 }
 
-void Button::handleEvents() {
-	sf::Event e;
-	bool ev = this->window->getWindow()->pollEvent(e);
+void Button::handleEvents(sf::Event& e) {
 	if (e.type == sf::Event::MouseButtonPressed) {
 		sf::Vector2f mousePos = this->window->getMousePosition();
 
@@ -62,17 +64,20 @@ void Button::handleEvents() {
 
 		if (this->clicked()) {
 			if (this->type == Misc::ButtonTypes::BUTTON_BOARD_SQUARE) {
-				std::cout << "A board square was pressed!" << std::endl;
+				std::cout << "A board square was pressed! " << this->id << std::endl;
 			}
 			else if (this->type == Misc::ButtonTypes::BUTTON_FINISH_TURN) {
 				std::cout << "The finish turn button was pressed" << std::endl;
 			}
 		}
 	}
+	else if (e.type == sf::Event::MouseMoved) {
+
+	}
 }
 
 // getters
-sf::Sprite Button::getSprite() {
+sf::Sprite& Button::getSprite() {
 	return this->sprite;
 }
 
@@ -85,6 +90,14 @@ bool Button::clicked() {
 	return false;
 }
 
+int Button::getId() {
+	return this->id;
+}
+
+std::string Button::getString() {
+	return this->str;
+}
+
 // setters
 void Button::setKnownMousePos(sf::Vector2f mousePos) {
 	this->knownMousePos.x = mousePos.x;
@@ -94,4 +107,12 @@ void Button::setKnownMousePos(sf::Vector2f mousePos) {
 void Button::drawButton() {
 	this->window->drawSprite(this->getSprite());
 	this->window->drawText(this->getTextWriter()->text);
+}
+
+void Button::setId(int id) {
+	this->id = id;
+}
+
+void Button::setString(std::string str) {
+	this->str = str;
 }

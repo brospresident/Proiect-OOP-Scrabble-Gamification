@@ -10,6 +10,7 @@ Texture::Texture() {
 }
 
 Texture::Texture(const std::string path, const float posX, const float posY, const float width, const float height) {
+	this->path = path;
 	this->height = height;
 	this->width = width;
 	this->posX = posX;
@@ -44,18 +45,22 @@ std::string Texture::getPath() {
 // setters
 void Texture::setPosX(float x) {
 	this->posX = x;
+	this->rect.top = this->posX;
 }
 
 void Texture::setPosY(float y) {
 	this->posY = y;
+	this->rect.left = y;
 }
 
 void Texture::setWidth(float w) {
 	this->width = w;
+	this->rect.width = this->width;
 }
 
 void Texture::setHeight(float h) {
 	this->height = h;
+	this->rect.height = this->height;
 }
 
 void Texture::setPath(std::string path) {
@@ -72,6 +77,7 @@ void Texture::setRepeated(bool flag) {
 
 void Texture::loadTexture() {
 	if (!this->texture.loadFromFile(this->getPath(), sf::IntRect(this->getPosX(), this->getPosY(), this->getWidth(), this->getHeight()))) {
+	//if (!this->texture.loadFromFile(this->getPath())) {
 		std::cout << "Failed to load texture..." << std::endl;
 		return;
 	}

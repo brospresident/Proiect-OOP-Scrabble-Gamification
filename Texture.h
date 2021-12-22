@@ -14,6 +14,7 @@ private:
 	std::string path;
 public:
 	sf::Texture texture;
+	sf::IntRect rect;
 	Texture();
 	Texture(const std::string, const float, const float, const float, const float);
 
@@ -34,6 +35,7 @@ public:
 	void setRepeated(bool);
 
 	void loadTexture();
+	void unLoadTexture();
 };
 
 #endif // !_TEXTURE_

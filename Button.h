@@ -10,29 +10,35 @@
 #include "Texture.h"
 #include "Window.h"
 
-class Button : public Texture {
+class Button {
 private:
+	int id;
 	float x;
 	float y;
+	float h;
+	float w;
 	TextWriter* tw;
 	sf::Sprite sprite;
 	int type;
 	sf::Vector2f knownMousePos;
 	Window* window;
+	Texture texture;
+	std::string str;
 
 public:
 	Button();
-	Button(const std::string, const std::string, const float, const float, const float, const float, const int, const sf::Font, Window*);
+	Button(const int, const std::string, const std::string, const float, const float, const float, const float, const int, const sf::Font, Window*, Texture);
 	~Button();
 
 	// getters
-	sf::Sprite getSprite();
+	sf::Sprite& getSprite();
 	TextWriter* getTextWriter();
-
+	int getId();
+	std::string getString();
 	void setButtonPosition();
 	void initSprite();
 
-	void handleEvents();
+	void handleEvents(sf::Event& e);
 
 	bool clicked();
 
@@ -40,6 +46,8 @@ public:
 
 	// setters
 	void setKnownMousePos(sf::Vector2f);
+	void setId(int id);
+	void setString(std::string str);
 };
 
 #endif

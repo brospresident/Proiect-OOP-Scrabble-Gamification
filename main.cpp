@@ -8,6 +8,7 @@
 #include "Misc.h"
 #include "Player.h"
 #include "Button.h"
+#include "Board.h"
 
 int main() {
     // Creating the game window
@@ -36,6 +37,13 @@ int main() {
     Player player1;
     Player player2;
 
+    bool shouldBeUpper = false;
+
+    Texture squareTexture("assets/buttons/1.jpg", 0, 0, 0, 0);
+
+    Board* gameBoard = new Board(window, gameFont, squareTexture);
+    gameBoard->initBoard();
+
     // gameloop
     while (window->isOpen()) {
         // fac clear la window. Trebuie facut clear la fiecare iteratie
@@ -57,18 +65,29 @@ int main() {
             if (event.type == sf::Event::KeyPressed) {
                 // Registering the 1st player into the game
                 if (gamePhase == misc.GamePhases::RegisteringPlayer1) {
+                    std::string key;
+                    if (shouldBeUpper == true) {
+                        key = misc.toUpperCase(event.key.code);
+                        shouldBeUpper = false;
+                    }
+                    else {
+                        key = misc.keyCodeToString(event.key.code);
+                    }
+                    if (key.compare(misc.UNKNOWN_CHARACTER)) {
+                        playerName.append(key);
+                    }
+                }
+
+                // Registering the 2nd player into the game (DISCONTINUED -> Should remove)
+                if (gamePhase == misc.GamePhases::RegisteringPlayer2) {
                     std::string key = misc.keyCodeToString(event.key.code);
                     if (key.compare(misc.UNKNOWN_CHARACTER)) {
                         playerName.append(key);
                     }
                 }
 
-                // Registering the 2nd player into the game
-                if (gamePhase == misc.GamePhases::RegisteringPlayer2) {
-                    std::string key = misc.keyCodeToString(event.key.code);
-                    if (key.compare(misc.UNKNOWN_CHARACTER)) {
-                        playerName.append(key);
-                    }
+                if (event.key.code == 38 || event.key.code == 42) {
+                    shouldBeUpper = true;
                 }
 
                 // On press ENTER
@@ -80,7 +99,7 @@ int main() {
                         player2 = Player(playerName, 1);
                     }
                     playerName.clear();
-                    gamePhase++;
+                    gamePhase += 2; // skip the 2nd player registration
                 }
                 // BACKSPACE functionality to remove a character when typing name
                 else if (event.key.code == sf::Keyboard::BackSpace) {
@@ -98,7 +117,7 @@ int main() {
 
         if (gamePhase >= 0) {
             if (gamePhase == misc.GamePhases::RegisteringPlayer1) {
-                TextWriter playerNameInput("Please type player 1 name: ", 15, gameFont, window->getWidth() / 2, window->getHeight() / 4.0f);
+                TextWriter playerNameInput("Please type in your name: ", 15, gameFont, window->getWidth() / 2, window->getHeight() / 4.0f);
                 TextWriter inputPreview(playerName, 15, gameFont, window->getWidth() / 2, window->getHeight() / 3.0f);
                 window->drawText(playerNameInput.text);
                 window->drawText(inputPreview.text);
@@ -111,14 +130,19 @@ int main() {
             }
             else if (gamePhase == misc.GamePhases::Playing) {
                 std::vector<TextWriter*> d1 = player1.dataToString(gameFont, window->getWidth(), window->getHeight());
-                std::vector<TextWriter*> d2 = player2.dataToString(gameFont, window->getWidth(), window->getHeight());
+                //std::vector<TextWriter*> d2 = player2.dataToString(gameFont, window->getWidth(), window->getHeight());
 
                 window->drawText(d1[0]->text);
                 window->drawText(d1[1]->text);
-                window->drawText(d2[0]->text);
-                window->drawText(d2[1]->text);
+                //window->drawText(d2[0]->text);
+                //window->drawText(d2[1]->text);
 
-                Button testButton = Button("Hello button", "assets/buttons/1.jpg", window->getWidth() / 2, 620, 128, 32, misc.BUTTON_BOARD_SQUARE, gameFont, window);
+                Button testButton = Button(0, "Hello button", "assets/buttons/1.jpg", window->getWidth() / 2, 620, 120, 25, misc.BUTTON_BOARD_SQUARE, gameFont, window, squareTexture);
+                testButton.handleEvents(event);
+                testButton.drawButton();
+
+                gameBoard->setEvent(event);
+                gameBoard->drawBoard();
 
                 // After each iteration I free the memory
                 // If I dont free the memory then it will reach a situation where it doesnt fit into the ram...
@@ -126,9 +150,9 @@ int main() {
                     delete x;
                 }
 
-                for (auto x : d2) {
-                    delete x;
-                }
+                //for (auto x : d2) {
+                    //delete x;
+                //}
             }
             TextWriter gameTitle("Scrabble", 35, gameFont, window->getWidth() / 2, 5.0f);
             gameTitle.setColorRed();
@@ -139,6 +163,7 @@ int main() {
     }
 
     delete window;
+    // delete gameBoard;
 
 	return 0;
 }

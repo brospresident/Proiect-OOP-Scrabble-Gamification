@@ -15,12 +15,6 @@ int main() {
     Window *window = new Window(1024, 768);
     Misc misc;
 
-    // std::vector<std::string> randomChar = misc.randomCharList();
-
-    // for (std::string s : randomChar) {
-        // std::cout << s << " ";
-    // }
-
     int gamePhase = -1;
 
     // incarc fontul pe care il vom folosi in joc
@@ -130,16 +124,9 @@ int main() {
             }
             else if (gamePhase == misc.GamePhases::Playing) {
                 std::vector<TextWriter*> d1 = player1.dataToString(gameFont, window->getWidth(), window->getHeight());
-                //std::vector<TextWriter*> d2 = player2.dataToString(gameFont, window->getWidth(), window->getHeight());
 
                 window->drawText(d1[0]->text);
                 window->drawText(d1[1]->text);
-                //window->drawText(d2[0]->text);
-                //window->drawText(d2[1]->text);
-
-                Button testButton = Button(0, "Hello button", "assets/buttons/1.jpg", window->getWidth() / 2, 620, 120, 25, misc.BUTTON_BOARD_SQUARE, gameFont, window, squareTexture);
-                testButton.handleEvents(event);
-                testButton.drawButton();
 
                 gameBoard->setEvent(event);
                 gameBoard->drawBoard();
@@ -149,10 +136,6 @@ int main() {
                 for (auto x : d1) {
                     delete x;
                 }
-
-                //for (auto x : d2) {
-                    //delete x;
-                //}
             }
             TextWriter gameTitle("Scrabble", 35, gameFont, window->getWidth() / 2, 5.0f);
             gameTitle.setColorRed();

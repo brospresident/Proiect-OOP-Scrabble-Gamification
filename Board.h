@@ -19,6 +19,9 @@ private:
 	std::vector<std::string> randomCharList;
 	Misc misc;
 	std::string boardData[15][15];
+	int clickedId;
+	Button* randomChars[7];
+	Button* lastBoardButtonClicked = nullptr;
 
 public:
 	Board(Window*, sf::Font&, Texture&);
@@ -31,6 +34,10 @@ public:
 	void drawBoard();
 	void generateRandomCharList();
 	void setBoardData();
+	Button* findButtonById(int id);
+	void handleBoardEvents();
+	int checkButtonClicked();
+	void setRandomCharList();
 };
 
 #endif

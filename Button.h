@@ -36,6 +36,7 @@ public:
 	int getId();
 	std::string getString();
 	void setButtonPosition();
+	int getType();
 	void initSprite();
 
 	void handleEvents(sf::Event& e);
@@ -43,6 +44,8 @@ public:
 	bool clicked();
 
 	void drawButton();
+
+	bool isEmpty();
 
 	// setters
 	void setKnownMousePos(sf::Vector2f);

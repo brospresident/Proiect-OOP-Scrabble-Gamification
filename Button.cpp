@@ -10,7 +10,7 @@ Button::Button() {
 
 Button::Button(const int id, const std::string str, const std::string path, const float x, const float y, const float w, const float h, const int type, sf::Font font, Window* window, Texture texture) {
 	this->id = id;
-	tw = new TextWriter(str, 10, font, x + 5, y + 5);
+	this->tw = new TextWriter(str, 12, font, x + 5, y + 2);
 	this->x = x;
 	this->y = y;
 	this->h = h;
@@ -61,15 +61,6 @@ void Button::handleEvents(sf::Event& e) {
 		sf::Vector2f mousePos = this->window->getMousePosition();
 
 		this->setKnownMousePos(mousePos);
-
-		if (this->clicked()) {
-			if (this->type == Misc::ButtonTypes::BUTTON_BOARD_SQUARE) {
-				std::cout << "A board square was pressed! " << this->id << std::endl;
-			}
-			else if (this->type == Misc::ButtonTypes::BUTTON_FINISH_TURN) {
-				std::cout << "The finish turn button was pressed" << std::endl;
-			}
-		}
 	}
 	else if (e.type == sf::Event::MouseMoved) {
 
@@ -98,6 +89,10 @@ std::string Button::getString() {
 	return this->str;
 }
 
+int Button::getType() {
+	return this->type;
+}
+
 // setters
 void Button::setKnownMousePos(sf::Vector2f mousePos) {
 	this->knownMousePos.x = mousePos.x;
@@ -115,4 +110,9 @@ void Button::setId(int id) {
 
 void Button::setString(std::string str) {
 	this->str = str;
+	this->tw->text.setString(this->str);
+}
+
+bool Button::isEmpty() {
+	return this->str == "";
 }

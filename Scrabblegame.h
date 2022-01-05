@@ -9,8 +9,8 @@
 #include "./Slot.h"
 #include "./Player.h"
 
-class ScrabbleGame {
-private:
+class ScrabbleGame{
+    private:
     int words = 0;
     int score = 0;
     int multiplier = 1;
@@ -19,7 +19,7 @@ private:
     std::string lettersOnBoard();
 
     Player player;
-public:
+    public:
     void setDoubleLetters();
     void setTripleLetters();
     void setDoubleWords();
@@ -28,7 +28,7 @@ public:
     int returnBonus(Slot slot);
     int letterScore(char character);
     int WordValue(std::string word);
-
+    
     ScrabbleGame();
 };
 #endif // __SCRABBLEGAME_H__

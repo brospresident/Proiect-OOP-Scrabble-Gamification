@@ -56,8 +56,8 @@ void ScrabbleGame::setDoubleWords() {
 }
 
 void ScrabbleGame::setTripleWords() {
-    for (int i = 0; i < 15; i += 7)
-        for (int j = 0; j < 15; j += 7)
+    for (int i = 0; i < 15; i +=7)
+        for (int j = 0; j < 15; j +=7)
             board[i][j].setBonus("3W");
 }
 
@@ -74,8 +74,8 @@ int ScrabbleGame::returnBonus(Slot slot) {
 }
 
 int ScrabbleGame::letterScore(char letter) {
-    if (letter == 'A' || letter == 'E' || letter == 'I' || letter == 'L' || letter == 'N' || letter == 'O' || letter == 'R'
-        || letter == 'S' || letter == 'T' || letter == 'U')
+    if (letter == 'A' || letter == 'E' || letter == 'I' || letter == 'L' || letter == 'N' || letter == 'O' || letter == 'R' 
+    || letter == 'S' || letter == 'T' || letter == 'U')
         return 1;
     if (letter == 'D' || letter == 'G')
         return 2;
@@ -88,14 +88,14 @@ int ScrabbleGame::letterScore(char letter) {
     if (letter == 'J' || letter == 'X')
         return 8;
     if (letter == 'Q' || letter == 'Z')
-        return 10;
-}
+        return 10; 
+    }
 
 int ScrabbleGame::WordValue(std::string word) {
     int points = 0;
     int value = 0;
 
-    for (char character : word) {
+    for (char character: word) {
         value = letterScore(character - 32);
         if (value == 0)
             return 0;

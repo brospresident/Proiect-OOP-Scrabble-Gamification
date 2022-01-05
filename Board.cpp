@@ -1,14 +1,15 @@
 #include "Board.h"
 
-Board::Board(Window* w, sf::Font& f, Texture& texture) {
+Board::Board(Window* w, sf::Font& f, std::vector<std::reference_wrapper<Texture>>& textures) {
 	this->event = sf::Event();
 	this->window = w;
 	this->font = f;
-	this->texture = texture;
+	// this->texture = texture;
+	this->textures = textures;
 
 	for (int i = 0; i < 7; ++i) {
 		int id = 245 + i;
-		Button* btn = new Button(id, "", "assets/buttons/1.jpg", this->startPosX / 0.75 + (i * this->rightMove), this->startPosY / 2 + 10.0f, 20.0f, 20.0f, Misc::ButtonTypes::BUTTON_RANDOM_CHAR, f, w, texture);
+		Button* btn = new Button(id, "", this->startPosX / 0.75 + (i * this->rightMove), this->startPosY / 2 + 10.0f, 20.0f, 20.0f, Misc::ButtonTypes::BUTTON_RANDOM_CHAR, f, w, textures[0]);
 		this->randomChars[i] = btn;
 	}
 
@@ -17,10 +18,23 @@ Board::Board(Window* w, sf::Font& f, Texture& texture) {
 	for (int i = 0; i < 15; ++i) {
 		for (int j = 0; j < 15; ++j) {
 			int id = 15 * i + j;
-			Button* btn = new Button(id, "", "assets/buttons/1.jpg", this->startPosX + (j * this->rightMove), this->startPosY + (i * this->downMove), 20.0f, 20.0f, Misc::ButtonTypes::BUTTON_BOARD_SQUARE, f, w, texture);
+			Button* btn;
+			if ((i == 0 && j == 3) || (i == 0 && j == 0) || (i == 2 && j == 6) || (i == 2 && j == 8) || (i == 3 && j == 0) || (i == 3 && j == 7) || (i == 3 && j == 14)
+				|| (i == 6 && j == 2) || (i == 6 && j == 6) || (i == 6 && j == 8) || (i == 6 && j == 12) || (i == 7 && j == 3) || (i == 7 && j == 11) || (i == 8 && j == 2)
+				|| (i == 8 && j == 6) || (i == 8 && j == 8) || (i == 8 && j == 12) || (i == 11 && j == 0) || (i == 11 && j == 7) || (i == 11 && j == 14)
+				|| (i == 12 && j == 6) || (i == 12 && j == 8) || (i == 14 && j == 3) || (i == 14 && j == 11)) {
+				btn = new Button(id, "", this->startPosX + (j * this->rightMove), this->startPosY + (i * this->downMove), 20.0f, 20.0f, Misc::ButtonTypes::BUTTON_BOARD_SQUARE, f, w, textures[1]);
+			}
+			else if ((i == 1 && j == 5) || (i == 1 && j == 9) || (i == 5 && j == 1) || (i == 5 && j == 5) || (i == 5 && j == 9) || (i == 5 && j == 13) || (i == 9 && j == 1) 
+				|| (i == 9 && j == 5) || (i == 9 && j == 9) || (i == 9 && j == 13) || (i == 13 && j == 5) || (i == 13 && j == 9)) {
+				btn = new Button(id, "", this->startPosX + (j * this->rightMove), this->startPosY + (i * this->downMove), 20.0f, 20.0f, Misc::ButtonTypes::BUTTON_BOARD_SQUARE, f, w, textures[2]);
+			}
+			else btn = new Button(id, "", this->startPosX + (j * this->rightMove), this->startPosY + (i * this->downMove), 20.0f, 20.0f, Misc::ButtonTypes::BUTTON_BOARD_SQUARE, f, w, textures[4]);
 			this->board[i][j] = btn;
 		}
 	}
+
+
 }
 
 void Board::initBoard() {

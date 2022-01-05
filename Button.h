@@ -27,7 +27,7 @@ private:
 
 public:
 	Button();
-	Button(const int, const std::string, const std::string, const float, const float, const float, const float, const int, const sf::Font, Window*, Texture);
+	Button(const int, const std::string, const float, const float, const float, const float, const int, const sf::Font, Window*, Texture);
 	~Button();
 
 	// getters
@@ -51,6 +51,7 @@ public:
 	void setKnownMousePos(sf::Vector2f);
 	void setId(int id);
 	void setString(std::string str);
+	void setTexture(Texture&);
 };
 
 #endif

@@ -6,11 +6,11 @@
 
 //The Slot class checks if a slot is ocuppied by a letter and encounters if we find a bonus letter/word on it
 class Slot {
-    private:
+private:
     char letter;
     bool isReserved;
     std::string bonus;
-    public:
+public:
     std::string getBonus();
     void setBonus(std::string bonus);
 
@@ -21,6 +21,6 @@ class Slot {
     void set_isReserved(bool isReserved);
 
     std::string toString();
-//Getters and setters
+    //Getters and setters
 };
 #endif // __SLOT_H__

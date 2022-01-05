@@ -22,9 +22,10 @@ private:
 	int clickedId;
 	Button* randomChars[7];
 	Button* lastBoardButtonClicked = nullptr;
+	std::vector<std::reference_wrapper<Texture>> textures;
 
 public:
-	Board(Window*, sf::Font&, Texture&);
+	Board(Window*, sf::Font&, std::vector<std::reference_wrapper<Texture>>&);
 	~Board();
 
 	void initBoard();

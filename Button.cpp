@@ -8,7 +8,7 @@ Button::Button() {
 	this->y = 0.0f;
 }
 
-Button::Button(const int id, const std::string str, const std::string path, const float x, const float y, const float w, const float h, const int type, sf::Font font, Window* window, Texture texture) {
+Button::Button(const int id, const std::string str, const float x, const float y, const float w, const float h, const int type, sf::Font font, Window* window, Texture texture) {
 	this->id = id;
 	this->tw = new TextWriter(str, 12, font, x + 5, y + 2);
 	this->x = x;
@@ -52,7 +52,7 @@ void Button::setButtonPosition() {
 
 void Button::initSprite() {
 	this->sprite = sf::Sprite(this->texture.texture);
-	this->sprite.setTextureRect(sf::IntRect(this->x, this->y, this->w, this->h));
+	this->sprite.setTextureRect(sf::IntRect(0, 0, this->w, this->h));
 	this->setButtonPosition();
 }
 
@@ -115,4 +115,9 @@ void Button::setString(std::string str) {
 
 bool Button::isEmpty() {
 	return this->str == "";
+}
+
+void Button::setTexture(Texture& texture) {
+	this->texture = texture;
+	this->initSprite();
 }

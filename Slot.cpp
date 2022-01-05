@@ -5,7 +5,7 @@ std::string Slot::getBonus() {
 }
 
 char Slot::getLetter() {
-    return this->letter; 
+    return this->letter;
 }
 
 bool Slot::get_isReserved() {
@@ -27,13 +27,13 @@ void Slot::set_isReserved(bool new_isReserved) {
 
 std::string Slot::toString() {
     std::string string = " ";
-        if (isReserved) {
-            string.push_back(letter);
-            string.push_back(' ');
-        }
-        else if (bonus != "")
-            string = string + bonus;
-        else
-            string = "_";
-        return string;
+    if (isReserved) {
+        string.push_back(letter);
+        string.push_back(' ');
     }
+    else if (bonus != "")
+        string = string + bonus;
+    else
+        string = "_";
+    return string;
+}

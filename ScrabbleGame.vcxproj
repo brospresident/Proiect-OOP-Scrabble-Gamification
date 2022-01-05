@@ -25,6 +25,8 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Misc.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Scrabblegame.cpp" />
+    <ClCompile Include="Slot.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TextWriter.cpp" />
     <ClCompile Include="Window.cpp" />
@@ -35,6 +37,8 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="Misc.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Scrabblegame.h" />
+    <ClInclude Include="Slot.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TextWriter.h" />
     <ClInclude Include="Window.h" />

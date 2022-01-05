@@ -8,7 +8,7 @@
 #include "Misc.h"
 #include "Player.h"
 #include "Button.h"
-#include "Board.h"
+#include "Game.h"
 
 int main() {
     // Creating the game window
@@ -33,15 +33,37 @@ int main() {
 
     bool shouldBeUpper = false;
 
+    // Loading the textures
     Texture squareTexture("assets/buttons/1.jpg", 0, 0, 0, 0);
 
-    Board* gameBoard = new Board(window, gameFont, squareTexture);
-    gameBoard->initBoard();
+    Texture classicTexture("assets/textures/5.jpg", 0, 0, 0, 0);
+    Texture doubleLetterTexture("assets/textures/1.jpg", 0, 0, 0, 0);
+    Texture tripleLetterTexture("assets/textures/2.jpg", 0, 0, 0, 0);
+    Texture doubleWordTexture("assets/textures/3.jpg", 0, 0, 0, 0);
+    Texture tripleWordTexture("assets/textures/4.jpg", 0, 0, 0, 0);
+
+    Texture background("assets/textures/bg.jpg", 0, 0, 0, 0);
+    sf::Sprite backgroundSprite(background.texture);
+
+    std::vector<std::reference_wrapper<Texture>> textures;
+    textures.push_back(classicTexture);
+    textures.push_back(doubleLetterTexture);
+    textures.push_back(tripleLetterTexture);
+    textures.push_back(doubleWordTexture);
+    textures.push_back(tripleWordTexture);
+
+    // Creating a game instance
+    Game* gameInstance = new Game(window, gameFont, textures);
 
     // gameloop
     while (window->isOpen()) {
         // fac clear la window. Trebuie facut clear la fiecare iteratie
         window->clear();
+
+        // Here I set the background for the background for the game.
+        // Should be done on phases and depending on the menu rerender what background is needed
+        backgroundSprite.setTextureRect(sf::IntRect(0, 0, window->getWidth(), window->getHeight()));
+        window->drawSprite(backgroundSprite);
         // definesc un event
         sf::Event event;
 
@@ -128,8 +150,7 @@ int main() {
                 window->drawText(d1[0]->text);
                 window->drawText(d1[1]->text);
 
-                gameBoard->setEvent(event);
-                gameBoard->drawBoard();
+                gameInstance->setEvent(event);
 
                 // After each iteration I free the memory
                 // If I dont free the memory then it will reach a situation where it doesnt fit into the ram...

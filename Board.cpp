@@ -4,7 +4,6 @@ Board::Board(Window* w, sf::Font& f, std::vector<std::reference_wrapper<Texture>
 	this->event = sf::Event();
 	this->window = w;
 	this->font = f;
-	// this->texture = texture;
 	this->textures = textures;
 
 	for (int i = 0; i < 7; ++i) {
@@ -34,7 +33,24 @@ Board::Board(Window* w, sf::Font& f, std::vector<std::reference_wrapper<Texture>
 		}
 	}
 
+	for (int i = 0; i < 5; ++i) {
+		this->board[i][i]->setTexture(textures[3]);
+		this->board[14 - i][i]->setTexture(textures[3]);
+	}
+	for (int j = 0; j < 14; j++) {
+		this->board[j][j]->setTexture(textures[3]);
+		this->board[14 - j][j]->setTexture(textures[3]);
+	}
 
+	this->board[7][7]->setTexture(textures[5]);
+
+	for (int i = 0; i < 15; i += 7)
+		for (int j = 0; j < 15; j += 7)
+			this->board[i][j]->setTexture(textures[6]);
+
+	this->board[7][7]->setTexture(textures[5]);
+
+	this->rerollButton = new Button(300, "REROLL", 600, 600, 140.0f, 30.0f, Misc::ButtonTypes::BUTTON_REROLL, f, w, textures[6]);
 }
 
 void Board::initBoard() {
@@ -54,6 +70,8 @@ void Board::setEvent(sf::Event& event) {
 		}
 	}
 
+	this->rerollButton->handleEvents(this->event);
+
 	this->handleBoardEvents();
 }
 
@@ -67,6 +85,8 @@ void Board::drawBoard() {
 			this->board[i][j]->drawButton();
 		}
 	}
+
+	this->rerollButton->drawButton();
 }
 
 Board::~Board() {
@@ -79,6 +99,8 @@ Board::~Board() {
 			delete this->board[i][j];
 		}
 	}
+
+	delete this->rerollButton;
 }
 
 void Board::generateRandomCharList() {
@@ -102,6 +124,10 @@ int Board::checkButtonClicked() {
 			}
 		}
 	}
+
+	if (this->rerollButton->clicked()) {
+		return this->rerollButton->getId();
+	}
 	return -1;
 }
 
@@ -111,6 +137,11 @@ void Board::handleBoardEvents() {
 		if (id == -1) return;
 
 		Button* clicked = this->findButtonById(id);
+
+		// REROLL
+		if (clicked->getType() == misc.BUTTON_REROLL) {
+			this->setRandomCharList();
+		}
 
 		if (this->lastBoardButtonClicked == nullptr) {
 			this->lastBoardButtonClicked = clicked;
@@ -150,5 +181,8 @@ Button* Board::findButtonById(int id) {
 		}
 	}
 
+	if (id == 300) return this->rerollButton;
+
 	return nullptr;
 }
+

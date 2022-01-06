@@ -1,5 +1,3 @@
-#pragma once
-
 #ifndef _PLAYER_
 #define _PLAYER_
 
@@ -15,7 +13,7 @@ private:
 	int id;
 	std::string playerName;
 	int score = 0;
-	std::vector <std::string> lettersSet[7];
+
 public:
 	Player(std::string playerName, int id);
 

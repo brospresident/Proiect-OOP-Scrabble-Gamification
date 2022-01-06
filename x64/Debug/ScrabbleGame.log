@@ -1,6 +1,1 @@
-﻿  Scrabblegame.cpp
-  Slot.cpp
-  Generating Code...
-D:\ScrabbleGame\Scrabblegame.cpp(92): warning C4715: 'ScrabbleGame::letterScore': not all control paths return a value
-D:\ScrabbleGame\Scrabblegame.cpp(74): warning C4715: 'ScrabbleGame::returnBonus': not all control paths return a value
-  ScrabbleGame.vcxproj -> D:\ScrabbleGame\x64\Debug\ScrabbleGame.exe
+﻿  ScrabbleGame.vcxproj -> D:\ScrabbleGame\x64\Debug\ScrabbleGame.exe

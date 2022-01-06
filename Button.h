@@ -52,6 +52,9 @@ public:
 	void setId(int id);
 	void setString(std::string str);
 	void setTexture(Texture&);
+
+	sf::Vector2f roundVector(const sf::Vector2f vector);
+	void centerText();
 };
 
 #endif

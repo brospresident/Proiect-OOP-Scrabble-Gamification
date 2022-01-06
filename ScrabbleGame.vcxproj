@@ -41,6 +41,7 @@
     <ClInclude Include="Slot.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TextWriter.h" />
+    <ClInclude Include="Timer.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

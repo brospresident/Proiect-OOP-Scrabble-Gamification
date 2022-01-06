@@ -9,8 +9,11 @@ Button::Button() {
 }
 
 Button::Button(const int id, const std::string str, const float x, const float y, const float w, const float h, const int type, sf::Font font, Window* window, Texture texture) {
+	int size = 12;
+	if (type == 0 || type == 2) size = 12;
+	else size = 18;
 	this->id = id;
-	this->tw = new TextWriter(str, 12, font, x + 5, y + 2);
+	this->tw = new TextWriter(str, size, font, x, y);
 	this->x = x;
 	this->y = y;
 	this->h = h;
@@ -32,6 +35,8 @@ Button::Button(const int id, const std::string str, const float x, const float y
 
 	//this->drawButton();
 	this->knownMousePos = sf::Vector2f(0, 0);
+
+	this->centerText();
 }
 
 Button::~Button() {
@@ -63,7 +68,12 @@ void Button::handleEvents(sf::Event& e) {
 		this->setKnownMousePos(mousePos);
 	}
 	else if (e.type == sf::Event::MouseMoved) {
+		sf::Vector2f mousePos = this->window->getMousePosition();
 
+		this->setKnownMousePos(mousePos);
+		if (this->clicked()) {
+
+		}
 	}
 }
 
@@ -120,4 +130,18 @@ bool Button::isEmpty() {
 void Button::setTexture(Texture& texture) {
 	this->texture = texture;
 	this->initSprite();
+}
+
+sf::Vector2f roundVector(const sf::Vector2f vector) {
+	return sf::Vector2f{std::round(vector.x), std::round(vector.y)};
+}
+
+void Button::centerText() {
+	auto pos = this->sprite.getPosition();
+	float pos_x = (pos.x + this->sprite.getLocalBounds().width / 2.1f) -
+		(this->tw->text.getLocalBounds().width / 2);
+	float pos_y = (pos.y + this->sprite.getLocalBounds().height / 4.0f) -
+		(this->tw->text.getLocalBounds().height / 2);
+
+	this->tw->text.setPosition(pos_x, pos_y);
 }

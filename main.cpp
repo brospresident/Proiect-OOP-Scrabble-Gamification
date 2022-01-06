@@ -34,23 +34,26 @@ int main() {
     bool shouldBeUpper = false;
 
     // Loading the textures
-    Texture squareTexture("assets/buttons/1.jpg", 0, 0, 0, 0);
+    Texture middle("assets/buttons/1.jpg", 0, 0, 0, 0);
 
-    Texture classicTexture("assets/textures/5.jpg", 0, 0, 0, 0);
+    Texture randomLetter("assets/textures/5.jpg", 0, 0, 0, 0);
     Texture doubleLetterTexture("assets/textures/1.jpg", 0, 0, 0, 0);
     Texture tripleLetterTexture("assets/textures/2.jpg", 0, 0, 0, 0);
     Texture doubleWordTexture("assets/textures/3.jpg", 0, 0, 0, 0);
-    Texture tripleWordTexture("assets/textures/4.jpg", 0, 0, 0, 0);
+    Texture classicTexture("assets/textures/4.jpg", 0, 0, 0, 0);
+    Texture tripleWordsTexture("assets/textures/6.jpg", 0, 0, 0, 0);
 
-    Texture background("assets/textures/bg.jpg", 0, 0, 0, 0);
+    Texture background("assets/textures/game_background.jpg", 0, 0, 0, 0);
     sf::Sprite backgroundSprite(background.texture);
 
     std::vector<std::reference_wrapper<Texture>> textures;
-    textures.push_back(classicTexture);
+    textures.push_back(randomLetter);
     textures.push_back(doubleLetterTexture);
     textures.push_back(tripleLetterTexture);
     textures.push_back(doubleWordTexture);
-    textures.push_back(tripleWordTexture);
+    textures.push_back(classicTexture);
+    textures.push_back(middle);
+    textures.push_back(tripleWordsTexture);
 
     // Creating a game instance
     Game* gameInstance = new Game(window, gameFont, textures);
@@ -115,7 +118,8 @@ int main() {
                         player2 = Player(playerName, 1);
                     }
                     playerName.clear();
-                    gamePhase += 2; // skip the 2nd player registration
+                    if (gamePhase == misc.GamePhases::RegisteringPlayer1 || gamePhase == misc.GamePhases::RegisteringPlayer2) 
+                        gamePhase += 2; // skip the 2nd player registration
                 }
                 // BACKSPACE functionality to remove a character when typing name
                 else if (event.key.code == sf::Keyboard::BackSpace) {
@@ -150,7 +154,9 @@ int main() {
                 window->drawText(d1[0]->text);
                 window->drawText(d1[1]->text);
 
-                gameInstance->setEvent(event);
+                int score = 0;
+                gameInstance->setEvent(event, score);
+                player1.setPlayerScore(score);
 
                 // After each iteration I free the memory
                 // If I dont free the memory then it will reach a situation where it doesnt fit into the ram...

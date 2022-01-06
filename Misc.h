@@ -23,7 +23,8 @@ public:
 	enum ButtonTypes {
 		BUTTON_BOARD_SQUARE,
 		BUTTON_FINISH_TURN,
-		BUTTON_RANDOM_CHAR
+		BUTTON_RANDOM_CHAR,
+		BUTTON_REROLL
 	};
 
 	// TODO support pentru cifre

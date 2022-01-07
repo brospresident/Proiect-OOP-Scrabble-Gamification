@@ -8,6 +8,7 @@
 #include "Window.h"
 #include "Scrabblegame.h"
 #include <vector>
+#include "Timer.h"
 
 class Game {
 private:
@@ -17,6 +18,7 @@ private:
 	sf::Font font;
 	Window* w;
 	ScrabbleGame sgInstance;
+	Timer time;
 
 public:
 	Game(Window*, sf::Font&, std::vector<std::reference_wrapper<Texture>>);

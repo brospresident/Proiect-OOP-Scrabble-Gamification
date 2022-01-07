@@ -31,6 +31,8 @@ public:
 
 	void setColorGreen();
 
+	void setColorBlack();
+
 	void underline();
 
 	void setItalic();

@@ -40,6 +40,10 @@ void TextWriter::setColorGreen() {
 	this->text.setFillColor(sf::Color::Green);
 }
 
+void TextWriter::setColorBlack() {
+	this->text.setFillColor(sf::Color::Black);
+}
+
 void TextWriter::underline() {
 	this->text.setStyle(sf::Text::Underlined);
 }

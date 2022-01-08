@@ -1,5 +1,3 @@
-#pragma once
-
 #ifndef _TEXT_WRITER_
 #define _TEXT_WRITER_
 

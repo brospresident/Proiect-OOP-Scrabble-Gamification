@@ -1,4 +1,3 @@
-#pragma once
 #ifndef _GAME_
 #define _GAME_
 
@@ -7,8 +6,8 @@
 #include "Texture.h"
 #include "Window.h"
 #include "Scrabblegame.h"
-#include <vector>
 #include "Timer.h"
+#include <vector>
 
 class Game {
 private:
@@ -18,7 +17,7 @@ private:
 	sf::Font font;
 	Window* w;
 	ScrabbleGame sgInstance;
-	Timer time;
+	Timer timer;
 
 public:
 	Game(Window*, sf::Font&, std::vector<std::reference_wrapper<Texture>>);

@@ -6,6 +6,8 @@ Game::Game(Window* w, sf::Font& font, std::vector<std::reference_wrapper<Texture
 	this->textures = textures;
 
 	this->board = new Board(this->w, this->font, textures);
+
+	this->timer = new Timer(font, w);
 }
 
 void Game::setEvent(sf::Event& ev, int& score) {
@@ -15,5 +17,11 @@ void Game::setEvent(sf::Event& ev, int& score) {
 	this->board->drawBoard();
 
 	score = this->sgInstance.checkBoard();
+
+	this->timer->renderTimer();
+}
+
+Game::~Game() {
+	delete this->timer;
 }
 

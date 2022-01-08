@@ -17,7 +17,7 @@ int main() {
 
     int gamePhase = -1;
 
-    // incarc fontul pe care il vom folosi in joc
+    // Loading the font that we will use in the game
     sf::Font gameFont;
     if (!gameFont.loadFromFile("lato.ttf")) {
         std::cout << "Failed to load the font... Check the path." << std::endl;
@@ -29,7 +29,6 @@ int main() {
     std::string playerName;
 
     Player player1;
-    Player player2;
 
     bool shouldBeUpper = false;
 
@@ -60,7 +59,7 @@ int main() {
 
     // gameloop
     while (window->isOpen()) {
-        // fac clear la window. Trebuie facut clear la fiecare iteratie
+        // Clear the window, should happen on every iteration of the gameloop
         window->clear();
 
         // Here I set the background for the background for the game.
@@ -70,7 +69,7 @@ int main() {
         // definesc un event
         sf::Event event;
 
-        // la fiecare event intampinat fac cate o actiune
+        // Do an action every time there happens an event
         while (window->getWindow()->pollEvent(event)) {
             if (event.type == sf::Event::Closed)
                 window->~Window();
@@ -97,14 +96,6 @@ int main() {
                     }
                 }
 
-                // Registering the 2nd player into the game (DISCONTINUED -> Should remove)
-                if (gamePhase == misc.GamePhases::RegisteringPlayer2) {
-                    std::string key = misc.keyCodeToString(event.key.code);
-                    if (key.compare(misc.UNKNOWN_CHARACTER)) {
-                        playerName.append(key);
-                    }
-                }
-
                 if (event.key.code == 38 || event.key.code == 42) {
                     shouldBeUpper = true;
                 }
@@ -114,16 +105,13 @@ int main() {
                     if (gamePhase == misc.GamePhases::RegisteringPlayer1) {
                         player1 = Player(playerName, 0);
                     }
-                    else if (gamePhase == misc.GamePhases::RegisteringPlayer2) {
-                        player2 = Player(playerName, 1);
-                    }
                     playerName.clear();
-                    if (gamePhase == misc.GamePhases::RegisteringPlayer1 || gamePhase == misc.GamePhases::RegisteringPlayer2) 
+                    if (gamePhase == misc.GamePhases::RegisteringPlayer1) 
                         gamePhase += 2; // skip the 2nd player registration
                 }
                 // BACKSPACE functionality to remove a character when typing name
                 else if (event.key.code == sf::Keyboard::BackSpace) {
-                    if (gamePhase == misc.GamePhases::RegisteringPlayer1 || gamePhase == misc.GamePhases::RegisteringPlayer2) {
+                    if (gamePhase == misc.GamePhases::RegisteringPlayer1) {
                         playerName = misc.removeLastCharacter(playerName);
                     }
                 }
@@ -138,12 +126,6 @@ int main() {
         if (gamePhase >= 0) {
             if (gamePhase == misc.GamePhases::RegisteringPlayer1) {
                 TextWriter playerNameInput("Please type in your name: ", 15, gameFont, window->getWidth() / 2, window->getHeight() / 4.0f);
-                TextWriter inputPreview(playerName, 15, gameFont, window->getWidth() / 2, window->getHeight() / 3.0f);
-                window->drawText(playerNameInput.text);
-                window->drawText(inputPreview.text);
-            }
-            else if (gamePhase == misc.GamePhases::RegisteringPlayer2) {
-                TextWriter playerNameInput("Please type player 2 name: ", 15, gameFont, window->getWidth() / 2, window->getHeight() / 4.0f);
                 TextWriter inputPreview(playerName, 15, gameFont, window->getWidth() / 2, window->getHeight() / 3.0f);
                 window->drawText(playerNameInput.text);
                 window->drawText(inputPreview.text);

@@ -50,7 +50,7 @@ Board::Board(Window* w, sf::Font& f, std::vector<std::reference_wrapper<Texture>
 
 	this->board[7][7]->setTexture(textures[5]);
 
-	this->rerollButton = new Button(300, "REROLL", 600, 600, 140.0f, 30.0f, Misc::ButtonTypes::BUTTON_REROLL, f, w, textures[6]);
+	this->rerollButton = new Button(300, "REROLL", 450, 600, 140.0f, 30.0f, Misc::ButtonTypes::BUTTON_REROLL, f, w, textures[6]);
 }
 
 void Board::initBoard() {

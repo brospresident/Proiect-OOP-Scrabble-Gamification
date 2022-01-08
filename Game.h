@@ -17,10 +17,11 @@ private:
 	sf::Font font;
 	Window* w;
 	ScrabbleGame sgInstance;
-	Timer timer;
+	Timer* timer;
 
 public:
 	Game(Window*, sf::Font&, std::vector<std::reference_wrapper<Texture>>);
+	~Game();
 
 	void setEvent(sf::Event&, int&);
 };

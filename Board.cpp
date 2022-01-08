@@ -141,6 +141,7 @@ void Board::handleBoardEvents() {
 		// REROLL
 		if (clicked->getType() == misc.BUTTON_REROLL) {
 			this->setRandomCharList();
+			return;
 		}
 
 		if (this->lastBoardButtonClicked == nullptr) {

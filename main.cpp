@@ -66,7 +66,7 @@ int main() {
         // Should be done on phases and depending on the menu rerender what background is needed
         backgroundSprite.setTextureRect(sf::IntRect(0, 0, window->getWidth(), window->getHeight()));
         window->drawSprite(backgroundSprite);
-        // definesc un event
+        // dDefining the event
         sf::Event event;
 
         // Do an action every time there happens an event
@@ -77,7 +77,6 @@ int main() {
             // Handle for mouse clicks
             if (event.type == sf::Event::MouseButtonPressed) {
                 sf::Vector2f mousePos = window->getMousePosition();
-                std::cout << "Mouse position(x, y): " << mousePos.x << " " << mousePos.y << std::endl;
             }
 
             if (event.type == sf::Event::KeyPressed) {

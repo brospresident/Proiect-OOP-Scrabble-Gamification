@@ -111,7 +111,72 @@ int ScrabbleGame::WordValue(std::string word) {
     return points;
 }
 
-int ScrabbleGame::checkBoard(std::string data[15][15]) {
+std::vector<std::string> ScrabbleGame::getDictionary() {
+    std::ifstream file("words.txt");
+    std::string line;
+    std::vector<std::string> dictionary;
+    int i = 0;
+    while (getline(file,line)) {
+        dictionary.push_back(line);
+    }
+    return dictionary;
+}
 
-    return 1;
+bool ScrabbleGame::isWord(std::string& word) {
+    std::vector<std::string> dictionar = getDictionary();
+    for(std::string &dic : dictionar){
+        if (word.compare(dic) == 0)
+            return true;
+    }
+    return false;
+}
+
+
+
+int ScrabbleGame::findScore(char board[15][15]) {
+    std::vector<std::string> words = getDictionary();
+    for (int i = 0; i < 15; i++) {
+        for (int j = 0; j < 15; j++) {
+            //std::cout << board[i][j] << " "; //Board verification for manual check
+            for (int k = 0; k < words.size(); k++)
+            {
+                if (board[i][j] == words[k][0])
+                {
+                    for (int l = 1; l <= words[k].size(); l++)
+                    {
+                        if (board[i - l][j] != words[k][l] && board[i + l][j] != words[k][l] && board[i][j + l] != words[k][l] && 
+                            board[i][j - l] != words[k][l] &&board[i + l][j + l] != words[k][l] &&board[i - l][j - l] != words[k][l] && 
+                            board[i + l][j - l] != words[k][l] && board[i - l][j + l] != words[k][l] )
+                        {
+                            break;
+                        }
+                        else if (l == words[k].size() - 1)
+                        {
+                            for (int h = 0; h < wordsFound.size(); h++) {
+                                if (words[k] == wordsFound[h]){ //duplicate checker
+                                    goto label;
+                                } 
+                            }                            
+                            score += WordValue(words[k]);
+                            label:
+                            std::vector<int> location;
+                            location.push_back(i);
+                            location.push_back(j);
+                            locations.push_back(location);
+                            wordsFound.push_back(words[k]); //Remember the found words
+                           
+                        }
+                    }
+                }
+            }
+        }
+    }   
+    for (int i = 0; i < wordsFound.size(); i++){
+        std::cout << wordsFound[i] << " was found at [" << locations[i][0] << "][" << locations[i][1] << "]" << std::endl;
+    } // words location
+    return score;        
+}
+
+int ScrabbleGame::checkBoard(char data[15][15]) {
+    return findScore(data);
 }

@@ -20,6 +20,10 @@ private:
 
     Player player;
 public:
+    char calculateBoard[15][15];
+    std::vector<std::string> wordsFound;
+    std::vector<std::vector<int>> locations;
+
     void setDoubleLetters();
     void setTripleLetters();
     void setDoubleWords();
@@ -29,7 +33,12 @@ public:
     int letterScore(char character);
     int WordValue(std::string word);
 
-    int checkBoard(std::string data[15][15]);
+    std::vector<std::string> getDictionary();
+
+    bool isWord(std::string& word);
+    int findScore(char board[15][15]);
+
+    int checkBoard(char data[15][15]);
 
     ScrabbleGame();
 };

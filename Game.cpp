@@ -21,6 +21,10 @@ void Game::setEvent(sf::Event& ev, int& score) {
 	this->timer->renderTimer();
 }
 
+void Game::resetTimer() {
+	this->timer->getClock().restart();
+}
+
 Game::~Game() {
 	delete this->timer;
 }

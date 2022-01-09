@@ -31,9 +31,6 @@ Button::Button(const int id, const std::string str, const float x, const float y
 
 	this->window = window;
 
-	//this->handleEvents();
-
-	//this->drawButton();
 	this->knownMousePos = sf::Vector2f(0, 0);
 
 	this->centerText();
@@ -66,14 +63,6 @@ void Button::handleEvents(sf::Event& e) {
 		sf::Vector2f mousePos = this->window->getMousePosition();
 
 		this->setKnownMousePos(mousePos);
-	}
-	else if (e.type == sf::Event::MouseMoved) {
-		sf::Vector2f mousePos = this->window->getMousePosition();
-
-		this->setKnownMousePos(mousePos);
-		if (this->clicked()) {
-
-		}
 	}
 }
 
@@ -130,10 +119,6 @@ bool Button::isEmpty() {
 void Button::setTexture(Texture& texture) {
 	this->texture = texture;
 	this->initSprite();
-}
-
-sf::Vector2f roundVector(const sf::Vector2f vector) {
-	return sf::Vector2f{std::round(vector.x), std::round(vector.y)};
 }
 
 void Button::centerText() {

@@ -24,6 +24,7 @@ public:
 	~Game();
 
 	void setEvent(sf::Event&, int&);
+	void resetTimer();
 };
 
 #endif

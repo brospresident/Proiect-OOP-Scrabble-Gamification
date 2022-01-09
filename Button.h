@@ -24,6 +24,7 @@ private:
 	Window* window;
 	Texture texture;
 	std::string str;
+	Texture swapTexture;
 
 public:
 	Button();
@@ -52,8 +53,6 @@ public:
 	void setId(int id);
 	void setString(std::string str);
 	void setTexture(Texture&);
-
-	sf::Vector2f roundVector(const sf::Vector2f vector);
 	void centerText();
 };
 

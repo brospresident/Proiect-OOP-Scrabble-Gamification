@@ -14,8 +14,9 @@ public:
 	int consonants[21] = {1, 2, 3, 5, 6, 7, 9, 10, 11, 12, 13, 15, 16, 17, 18, 19, 21, 22, 23, 24, 25};
 	std::string const UNKNOWN_CHARACTER = "Unknown";
 	enum GamePhases {
+		Menu,
+		ShowingHelp,
 		RegisteringPlayer1,
-		RegisteringPlayer2,
 		Playing,
 		ShowingScore
 	};
@@ -24,7 +25,10 @@ public:
 		BUTTON_BOARD_SQUARE,
 		BUTTON_FINISH_TURN,
 		BUTTON_RANDOM_CHAR,
-		BUTTON_REROLL
+		BUTTON_REROLL,
+		BUTTON_START_GAME,
+		BUTTON_HELP,
+		BUTTON_BACK
 	};
 
 	// TODO support pentru cifre

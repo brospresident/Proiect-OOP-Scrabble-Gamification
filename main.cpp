@@ -9,6 +9,7 @@
 #include "Player.h"
 #include "Button.h"
 #include "Game.h"
+#include "Menu.h"
 
 int main() {
     // Creating the game window
@@ -24,7 +25,7 @@ int main() {
         return EXIT_FAILURE;
     }
 
-    gamePhase = misc.GamePhases::RegisteringPlayer1;
+    gamePhase = misc.GamePhases::Menu;
 
     std::string playerName;
 
@@ -42,6 +43,8 @@ int main() {
     Texture classicTexture("assets/textures/4.jpg", 0, 0, 0, 0);
     Texture tripleWordsTexture("assets/textures/6.jpg", 0, 0, 0, 0);
 
+    Texture gray("assets/textures/gray.jpg", 0, 0, 0, 0);
+
     Texture background("assets/textures/game_background.jpg", 0, 0, 0, 0);
     sf::Sprite backgroundSprite(background.texture);
 
@@ -53,9 +56,12 @@ int main() {
     textures.push_back(classicTexture);
     textures.push_back(middle);
     textures.push_back(tripleWordsTexture);
+    textures.push_back(gray);
 
     // Creating a game instance
     Game* gameInstance = new Game(window, gameFont, textures);
+
+    Menu gameMenu = Menu(window, gameFont, textures);
 
     // gameloop
     while (window->isOpen()) {
@@ -106,7 +112,7 @@ int main() {
                     }
                     playerName.clear();
                     if (gamePhase == misc.GamePhases::RegisteringPlayer1) 
-                        gamePhase += 2; // skip the 2nd player registration
+                        gamePhase = misc.GamePhases::Playing;
                 }
                 // BACKSPACE functionality to remove a character when typing name
                 else if (event.key.code == sf::Keyboard::BackSpace) {
@@ -123,7 +129,13 @@ int main() {
         }
 
         if (gamePhase >= 0) {
-            if (gamePhase == misc.GamePhases::RegisteringPlayer1) {
+            if (gamePhase == misc.GamePhases::Menu) {
+                gameMenu.setEvent(event);
+                gamePhase = gameMenu.handleActions();
+
+                gameInstance->resetTimer();
+            }
+            else if (gamePhase == misc.GamePhases::RegisteringPlayer1) {
                 TextWriter playerNameInput("Please type in your name: ", 15, gameFont, window->getWidth() / 2, window->getHeight() / 4.0f);
                 TextWriter inputPreview(playerName, 15, gameFont, window->getWidth() / 2, window->getHeight() / 3.0f);
                 window->drawText(playerNameInput.text);
@@ -145,7 +157,7 @@ int main() {
                     delete x;
                 }
             }
-            TextWriter gameTitle("Scrabble", 35, gameFont, window->getWidth() / 2, 5.0f);
+            TextWriter gameTitle("Scrabble", 35, gameFont, window->getWidth() / 2 - 15.0f, 5.0f);
             gameTitle.setColorRed();
             window->drawText(gameTitle.text);
 

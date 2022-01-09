@@ -111,7 +111,7 @@ int ScrabbleGame::WordValue(std::string word) {
     return points;
 }
 
-int ScrabbleGame::checkBoard() {
+int ScrabbleGame::checkBoard(std::string data[15][15]) {
 
     return 1;
 }

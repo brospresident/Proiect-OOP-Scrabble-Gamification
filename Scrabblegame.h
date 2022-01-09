@@ -29,7 +29,7 @@ public:
     int letterScore(char character);
     int WordValue(std::string word);
 
-    int checkBoard();
+    int checkBoard(std::string data[15][15]);
 
     ScrabbleGame();
 };

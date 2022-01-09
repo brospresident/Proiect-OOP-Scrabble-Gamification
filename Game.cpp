@@ -16,7 +16,7 @@ void Game::setEvent(sf::Event& ev, int& score) {
 	this->board->setEvent(this->ev);
 	this->board->drawBoard();
 
-	score = this->sgInstance.checkBoard();
+	score = this->sgInstance.checkBoard(this->board->boardData);
 
 	this->timer->renderTimer();
 }

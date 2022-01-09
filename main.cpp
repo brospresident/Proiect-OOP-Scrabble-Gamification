@@ -154,6 +154,7 @@ int main() {
     }
 
     delete window;
+    delete gameInstance;
     // delete gameBoard;
 
 	return 0;

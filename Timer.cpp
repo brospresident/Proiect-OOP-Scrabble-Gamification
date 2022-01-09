@@ -45,8 +45,13 @@ void Timer::renderTimer() {
 	int minutes = 0, seconds = 0;
 	this->getMinutesAndSeconds(minutes, seconds);
 
-	std::string text = std::to_string(minutes) + ":" + std::to_string(seconds) + "  left";
+	std::string minutesString = minutes < 10 ? "0" + std::to_string(minutes) : std::to_string(minutes);
+	std::string secondsString = seconds < 10 ? "0" + std::to_string(seconds) : std::to_string(seconds);
+
+	std::string text = minutesString + ":" + secondsString + "  left";
 
 	this->scoreRender = new TextWriter(text, 18, this->renderFont, 100, 50);
 	this->window->drawText(this->scoreRender->text);
+
+	delete this->scoreRender;
 }

@@ -18,7 +18,6 @@ private:
 	sf::Font font;
 	std::vector<std::string> randomCharList;
 	Misc misc;
-	std::string boardData[15][15];
 	int clickedId;
 	Button* randomChars[7];
 	Button* lastBoardButtonClicked = nullptr;
@@ -28,6 +27,8 @@ private:
 public:
 	Board(Window*, sf::Font&, std::vector<std::reference_wrapper<Texture>>&);
 	~Board();
+
+	std::string boardData[15][15];
 
 	void initBoard();
 

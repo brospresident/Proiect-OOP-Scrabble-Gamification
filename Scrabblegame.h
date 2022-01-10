@@ -21,6 +21,7 @@ private:
     Player player;
 public:
     char calculateBoard[15][15];
+    std::vector<bool> isChecked;
     std::vector<std::string> wordsFound;
     std::vector<std::vector<int>> locations;
 
@@ -36,7 +37,9 @@ public:
     std::vector<std::string> getDictionary();
 
     bool isWord(std::string& word);
-    int findScore(char board[15][15]);
+    
+    void setChecked(std::vector<bool> &isChecked, std::vector<std::string> words);
+    int findScore(char board[15][15],std::vector<bool> &isChecked);
 
     int checkBoard(char data[15][15]);
 

@@ -131,9 +131,14 @@ bool ScrabbleGame::isWord(std::string& word) {
     return false;
 }
 
+void ScrabbleGame::setChecked(std::vector<bool> &isChecked, std::vector<std::string> words) {
+    for (int i = 0; i < words.size(); i++) {
+        isChecked.push_back(false);
+    }
+}
 
+int ScrabbleGame::findScore(char board[15][15],std::vector<bool> &isChecked) {
 
-int ScrabbleGame::findScore(char board[15][15]) {
     std::vector<std::string> words = getDictionary();
     for (int i = 0; i < 15; i++) {
         for (int j = 0; j < 15; j++) {
@@ -152,25 +157,25 @@ int ScrabbleGame::findScore(char board[15][15]) {
                         }
                         else if (l == words[k].size() - 1)
                         {
-                            for (int h = 0; h < wordsFound.size(); h++) {
-                                if (words[k] == wordsFound[h]){ //duplicate checker
-                                    goto label;
-                                } 
-                            }                            
-                            score += WordValue(words[k]);
-                            label:
-                            std::vector<int> location;
-                            location.push_back(i);
-                            location.push_back(j);
-                            locations.push_back(location);
-                            wordsFound.push_back(words[k]); //Remember the found words
-                           
+                        for(int counter = 0; counter < wordsFound.size(); counter++) {
+                                if (words[k] == wordsFound[counter]) { //duplicate checker
+                                    isChecked[k] = true;
+                                }
+                            }
+                                    if (isChecked[k] == false) {
+                                    score += WordValue(words[k]);
+                                    std::vector<int> location;
+                                    location.push_back(i);
+                                    location.push_back(j);
+                                    locations.push_back(location);
+                                    wordsFound.push_back(words[k]); //Remember the found wordsS
+                                    }
                         }
                     }
                 }
             }
         }
-    }   
+    }
     for (int i = 0; i < wordsFound.size(); i++){
         std::cout << wordsFound[i] << " was found at [" << locations[i][0] << "][" << locations[i][1] << "]" << std::endl;
     } // words location
@@ -178,5 +183,6 @@ int ScrabbleGame::findScore(char board[15][15]) {
 }
 
 int ScrabbleGame::checkBoard(char data[15][15]) {
-    return findScore(data);
+    setChecked(isChecked, getDictionary());
+    return findScore(data, isChecked);
 }

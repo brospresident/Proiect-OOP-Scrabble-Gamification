@@ -28,7 +28,7 @@ public:
 	Board(Window*, sf::Font&, std::vector<std::reference_wrapper<Texture>>&);
 	~Board();
 
-	std::string boardData[15][15];
+	char boardData[15][15];
 
 	void initBoard();
 
@@ -41,6 +41,8 @@ public:
 	void handleBoardEvents();
 	int checkButtonClicked();
 	void setRandomCharList();
+
+	void printData();
 };
 
 #endif

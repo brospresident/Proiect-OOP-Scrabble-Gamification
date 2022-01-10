@@ -140,6 +140,7 @@ int main() {
                 TextWriter inputPreview(playerName, 15, gameFont, window->getWidth() / 2, window->getHeight() / 3.0f);
                 window->drawText(playerNameInput.text);
                 window->drawText(inputPreview.text);
+                gameInstance->resetTimer();
             }
             else if (gamePhase == misc.GamePhases::Playing) {
                 std::vector<TextWriter*> d1 = player1.dataToString(gameFont, window->getWidth(), window->getHeight());

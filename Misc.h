@@ -1,5 +1,3 @@
-#pragma once
-
 #ifndef _MISC_
 #define _MISC_
 
@@ -28,7 +26,8 @@ public:
 		BUTTON_REROLL,
 		BUTTON_START_GAME,
 		BUTTON_HELP,
-		BUTTON_BACK
+		BUTTON_BACK,
+		BUTTON_SHOW_GUIDE
 	};
 
 	// TODO support pentru cifre

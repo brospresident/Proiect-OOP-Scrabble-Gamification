@@ -110,7 +110,8 @@ void Board::generateRandomCharList() {
 void Board::setBoardData() {
 	for (int i = 0; i < 15; ++i) {
 		for (int j = 0; j < 15; ++j) {
-			this->boardData[i][j] = this->board[i][j]->getString();
+			char letter = this->board[i][j]->getString().c_str()[0];
+			this->boardData[i][j] = letter;
 		}
 	}
 }
@@ -157,6 +158,7 @@ void Board::handleBoardEvents() {
 			clicked->setString(this->lastBoardButtonClicked->getString());
 			this->lastBoardButtonClicked->setString("");
 			this->lastBoardButtonClicked = clicked;
+			this->setBoardData();
 		}
 	}
 }
@@ -185,5 +187,14 @@ Button* Board::findButtonById(int id) {
 	if (id == 300) return this->rerollButton;
 
 	return nullptr;
+}
+
+void Board::printData() {
+	for (int i = 0; i < 15; ++i) {
+		for (int j = 0; j < 15; ++j) {
+			std::cout << this->boardData[i][j] << " ";
+		}
+		std::cout << std::endl;
+	}
 }
 

@@ -35,7 +35,7 @@ void Player::setPlayerName(std::string playerName) {
 }
 
 void Player::setPlayerScore(int score) {
-	this->score += score;
+	this->score = score;
 }
 
 void Player::setPlayerId(int id) {

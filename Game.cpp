@@ -28,4 +28,3 @@ void Game::resetTimer() {
 Game::~Game() {
 	delete this->timer;
 }
-

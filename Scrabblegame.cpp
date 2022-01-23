@@ -157,13 +157,14 @@ int ScrabbleGame::findScore(char board[15][15]) {
                         }
                         else if (l == words[k].size() - 1)
                         {
+                            int counter2 = 0;
                             for (int counter = 0; counter < wordsFound.size(); counter++) {
                                 if (words[k] == wordsFound[counter]) { //duplicate checker
-                                    this->isChecked[counter] = true;
+                                    counter2++;
                                     break;
                                 }
                             }
-                            if (this->isChecked[k] == false) {
+                            if (counter2 == 0) {
                                 this->score += this->WordValue(words[k]);
                                 std::vector<int> location;
                                 location.push_back(i);

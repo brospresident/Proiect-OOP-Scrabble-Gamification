@@ -131,11 +131,6 @@ bool ScrabbleGame::isWord(std::string& word) {
     return false;
 }
 
-void ScrabbleGame::setChecked(std::vector<std::string> words) {
-    for (int i = 0; i < words.size(); i++) {
-        this->isChecked.push_back(false);
-    }
-}
 
 int ScrabbleGame::findScore(char board[15][15]) {
     this->score = 0;
@@ -182,6 +177,5 @@ int ScrabbleGame::findScore(char board[15][15]) {
 }
 
 int ScrabbleGame::checkBoard(char data[15][15]) {
-    setChecked(getDictionary());
     return findScore(data);
 }

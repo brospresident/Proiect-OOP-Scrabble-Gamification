@@ -38,7 +38,6 @@ public:
 
     bool isWord(std::string& word);
 
-    void setChecked(std::vector<std::string> words);
     int findScore(char board[15][15]);
 
     int checkBoard(char data[15][15]);

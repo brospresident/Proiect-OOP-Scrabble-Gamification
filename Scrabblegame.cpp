@@ -55,7 +55,7 @@ void ScrabbleGame::setDoubleWords() {
         board[14 - i][i].setBonus("2W");
     }
 
-    for (int j = 0; j < 14; j++) {
+    for (int j = 10; j < 14; j++) {
         board[j][j].setBonus("2W");
         board[14 - j][j].setBonus("2W");
     }

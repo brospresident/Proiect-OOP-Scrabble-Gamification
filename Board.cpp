@@ -8,7 +8,7 @@ Board::Board(Window* w, sf::Font& f, std::vector<std::reference_wrapper<Texture>
 
 	for (int i = 0; i < 7; ++i) {
 		int id = 245 + i;
-		Button* btn = new Button(id, "", this->startPosX / 0.75 + (i * this->rightMove), this->startPosY / 2 + 10.0f, 20.0f, 20.0f, Misc::ButtonTypes::BUTTON_RANDOM_CHAR, f, w, textures[0]);
+		Button* btn = new Button(id, "", this->startPosX / 0.75 + (i * this->rightMove), this->startPosY / 2 + 550.0f, 20.0f, 20.0f, Misc::ButtonTypes::BUTTON_RANDOM_CHAR, f, w, textures[9]);
 		this->randomChars[i] = btn;
 	}
 
@@ -50,7 +50,7 @@ Board::Board(Window* w, sf::Font& f, std::vector<std::reference_wrapper<Texture>
 
 	this->board[7][7]->setTexture(textures[5]);
 
-	this->rerollButton = new Button(300, "REROLL", 450, 600, 140.0f, 30.0f, Misc::ButtonTypes::BUTTON_REROLL, f, w, textures[6]);
+	this->rerollButton = new Button(300, "REROLL", 820, 150, 140.0f, 30.0f, Misc::ButtonTypes::BUTTON_REROLL, f, w, textures[5]);
 }
 
 void Board::initBoard() {

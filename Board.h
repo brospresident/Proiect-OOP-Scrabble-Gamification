@@ -7,7 +7,7 @@
 
 class Board {
 private:
-	double startPosX = 350;
+	double startPosX = 300;
 	double startPosY = 120.0f;
 	double rightMove = 28.0f;
 	double downMove = 28.0f;

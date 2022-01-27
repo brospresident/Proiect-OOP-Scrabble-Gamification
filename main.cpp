@@ -39,18 +39,19 @@ int main() {
     bool shouldBeUpper = false;
 
     // Loading the textures
-    Texture middle("assets/buttons/1.jpg", 0, 0, 0, 0);
+    Texture middle("assets/buttons/0.png", 0, 0, 0, 0);
 
     Texture randomLetter("assets/textures/5.jpg", 0, 0, 0, 0);
-    Texture doubleLetterTexture("assets/textures/1.jpg", 0, 0, 0, 0);
-    Texture tripleLetterTexture("assets/textures/2.jpg", 0, 0, 0, 0);
-    Texture doubleWordTexture("assets/textures/3.jpg", 0, 0, 0, 0);
-    Texture classicTexture("assets/textures/4.jpg", 0, 0, 0, 0);
-    Texture tripleWordsTexture("assets/textures/6.jpg", 0, 0, 0, 0);
-
+    Texture doubleLetterTexture("assets/textures/12.png", 0, 0, 0, 0);
+    Texture tripleLetterTexture("assets/textures/4.4.png", 0, 0, 0, 0);
+    Texture doubleWordTexture("assets/textures/7.7.png", 0, 0, 0, 0);
+    Texture classicTexture("assets/textures/2.2.png", 0, 0, 0, 0);
+    Texture tripleWordsTexture("assets/textures/3.3.png", 0, 0, 0, 0);
+    Texture darkblue("assets/textures/11.png", 0, 0, 0, 0);
+    Texture pink("assets/textures/10.10.png", 0, 0, 0, 0);
     Texture gray("assets/textures/gray.jpg", 0, 0, 0, 0);
 
-    Texture background("assets/textures/game_background.jpg", 0, 0, 0, 0);
+    Texture background("assets/textures/1.1.png", 0, 0, 0, 0);
     sf::Sprite backgroundSprite(background.texture);
 
     std::vector<std::reference_wrapper<Texture>> textures;
@@ -62,6 +63,8 @@ int main() {
     textures.push_back(middle);
     textures.push_back(tripleWordsTexture);
     textures.push_back(gray);
+    textures.push_back(darkblue);
+    textures.push_back(pink);
 
     // Creating a game instance
     Game* gameInstance = new Game(window, gameFont, textures);
@@ -143,7 +146,13 @@ int main() {
                 gameMenu.setEvent(event);
                 gamePhase = gameMenu.handleActions();
 
+                TextWriter gameTitle("Scrabble", 100, gameFont, window->getWidth() / 2 - 190.0f, 150.0f);
+                gameTitle.setColorRed();
+                window->drawText(gameTitle.text);
+
                 gameInstance->resetTimer();
+
+          
             }
             else if (gamePhase == misc.GamePhases::ShowingHelp) {
                 Guide guide(window, textures, gameFont);
@@ -155,7 +164,14 @@ int main() {
                 TextWriter inputPreview(playerName, 15, gameFont, window->getWidth() / 2, window->getHeight() / 3.0f);
                 window->drawText(playerNameInput.text);
                 window->drawText(inputPreview.text);
+
+                TextWriter gameTitle("Scrabble", 35, gameFont, window->getWidth() / 2 - 35.0f, 20.0f);
+                gameTitle.setColorRed();
+                window->drawText(gameTitle.text);
+
                 gameInstance->resetTimer();
+
+              
             }
             else if (gamePhase == misc.GamePhases::Playing) {
                 std::vector<TextWriter*> d1 = player1.dataToString(gameFont, window->getWidth(), window->getHeight());
@@ -172,6 +188,11 @@ int main() {
                 for (auto x : d1) {
                     delete x;
                 }
+
+
+                TextWriter gameTitle("Scrabble", 50, gameFont, window->getWidth() / 2 - 100.0f, 20.0f);
+                gameTitle.setColorRed();
+                window->drawText(gameTitle.text);
             }
             else if (gamePhase == misc.GamePhases::ShowingScore) {
                 GameOver gOver(window, textures, gameFont, player1);
@@ -183,9 +204,6 @@ int main() {
             else if (gamePhase == misc.GamePhases::ShowingTop) {
                 topPage.setEvent(event);
             }
-            TextWriter gameTitle("Scrabble", 35, gameFont, window->getWidth() / 2 - 15.0f, 5.0f);
-            gameTitle.setColorRed();
-            window->drawText(gameTitle.text);
 
             window->display();
         }

@@ -1,2 +1,12 @@
-﻿  Guide.cpp
-  ScrabbleGame.vcxproj -> D:\ScrabbleGame\x64\Debug\ScrabbleGame.exe
+﻿  main.cpp
+C:\Users\badoi\Documents\GitHub\Proiect-OOP-Scrabble-Gamification\main.cpp(84,96): warning C4244: 'argument': conversion from 'float' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+C:\Users\badoi\Documents\GitHub\Proiect-OOP-Scrabble-Gamification\main.cpp(84,75): warning C4244: 'argument': conversion from 'float' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+  ScrabbleGame.vcxproj -> C:\Users\badoi\Documents\GitHub\Proiect-OOP-Scrabble-Gamification\x64\Debug\ScrabbleGame.exe

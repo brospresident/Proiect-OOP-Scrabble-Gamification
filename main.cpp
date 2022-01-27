@@ -10,6 +10,11 @@
 #include "Button.h"
 #include "Game.h"
 #include "Menu.h"
+#include "Guide.h"
+#include "GameOver.h"
+#include "PlayerReader.h"
+#include "PlayerWriter.h"
+#include "TopPage.h"
 
 int main() {
     // Creating the game window
@@ -63,6 +68,9 @@ int main() {
 
     Menu gameMenu = Menu(window, gameFont, textures);
 
+    // Creating top page
+    TopPage topPage(window, textures, gameFont);
+
     // gameloop
     while (window->isOpen()) {
         // Clear the window, should happen on every iteration of the gameloop
@@ -108,6 +116,8 @@ int main() {
                 // On press ENTER
                 if (event.key.code == sf::Keyboard::Enter) {
                     if (gamePhase == misc.GamePhases::RegisteringPlayer1) {
+                        PlayerReader reader;
+                        reader.readData(playerName, player1);
                         player1 = Player(playerName, 0);
                     }
                     playerName.clear();
@@ -135,6 +145,11 @@ int main() {
 
                 gameInstance->resetTimer();
             }
+            else if (gamePhase == misc.GamePhases::ShowingHelp) {
+                Guide guide(window, textures, gameFont);
+                guide.setEvent(event);
+                gamePhase = guide.handleClick();
+            }
             else if (gamePhase == misc.GamePhases::RegisteringPlayer1) {
                 TextWriter playerNameInput("Please type in your name: ", 15, gameFont, window->getWidth() / 2, window->getHeight() / 4.0f);
                 TextWriter inputPreview(playerName, 15, gameFont, window->getWidth() / 2, window->getHeight() / 3.0f);
@@ -149,7 +164,7 @@ int main() {
                 window->drawText(d1[1]->text);
 
                 int score = 0;
-                gameInstance->setEvent(event, score);
+                gamePhase = gameInstance->setEvent(event, score);
                 player1.setPlayerScore(score);
 
                 // After each iteration I free the memory
@@ -157,6 +172,16 @@ int main() {
                 for (auto x : d1) {
                     delete x;
                 }
+            }
+            else if (gamePhase == misc.GamePhases::ShowingScore) {
+                GameOver gOver(window, textures, gameFont, player1);
+                gOver.setEvent(event);
+                gOver.displayContent();
+                PlayerWriter writer;
+                writer.writeData(player1);
+            }
+            else if (gamePhase == misc.GamePhases::ShowingTop) {
+                topPage.setEvent(event);
             }
             TextWriter gameTitle("Scrabble", 35, gameFont, window->getWidth() / 2 - 15.0f, 5.0f);
             gameTitle.setColorRed();

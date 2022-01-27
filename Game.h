@@ -23,7 +23,7 @@ public:
 	Game(Window*, sf::Font&, std::vector<std::reference_wrapper<Texture>>);
 	~Game();
 
-	void setEvent(sf::Event&, int&);
+	int setEvent(sf::Event&, int&);
 	void resetTimer();
 };
 

@@ -6,6 +6,7 @@ Menu::Menu(Window* window, sf::Font& font, std::vector<std::reference_wrapper<Te
 
 	this->buttons[0] = new Button(400, "Start Game", this->window->getWidth() / 2 - 30.0f, this->window->getHeight() / 2 - 160.0f, 200.0f, 40.0f, Misc::ButtonTypes::BUTTON_START_GAME, this->font, this->window, textures[7]);
 	this->buttons[1] = new Button(400, "Guide", this->window->getWidth() / 2 - 30.0f, this->window->getHeight() / 2 - 90.0f, 200.0f, 40.0f, Misc::ButtonTypes::BUTTON_SHOW_GUIDE, this->font, this->window, textures[7]);
+	this->buttons[2] = new Button(400, "Top 5 players", this->window->getWidth() / 2 - 30.0f, this->window->getHeight() / 2 - 20.0f, 200.0f, 40.0f, Misc::ButtonTypes::BUTTON_SHOW_TOP, this->font, this->window, textures[7]);
 }
 
 void Menu::setEvent(sf::Event& event) {
@@ -13,13 +14,16 @@ void Menu::setEvent(sf::Event& event) {
 
 	this->buttons[0]->handleEvents(this->event);
 	this->buttons[1]->handleEvents(this->event);
+	this->buttons[2]->handleEvents(this->event);
 
 	this->renderMenu();
 }
 
 void Menu::renderMenu() {
-	buttons[0]->drawButton();
-	buttons[1]->drawButton();
+	this->buttons[0]->drawButton();
+	this->buttons[1]->drawButton();
+	this->buttons[2]->drawButton();
+
 }
 
 int Menu::handleActions() {
@@ -30,11 +34,14 @@ int Menu::handleActions() {
 		else if (this->buttons[1]->clicked() && this->buttons[1]->getType() == Misc::ButtonTypes::BUTTON_SHOW_GUIDE) {
 			return Misc::GamePhases::ShowingHelp;
 		}
+		else if (this->buttons[2]->clicked() && this->buttons[2]->getType() == Misc::ButtonTypes::BUTTON_SHOW_TOP) {
+			return Misc::GamePhases::ShowingTop;
+		}
 	}
 
 	return Misc::GamePhases::Menu;
 }
 
 Menu::~Menu() {
-	delete this->buttons[0], this->buttons[1];
+	delete this->buttons[0], this->buttons[1], this->buttons[2];
 }

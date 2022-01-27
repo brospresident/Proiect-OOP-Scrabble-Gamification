@@ -19,32 +19,44 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AbstractPage.cpp" />
     <ClCompile Include="Board.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameOver.cpp" />
+    <ClCompile Include="Guide.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Misc.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerReader.cpp" />
+    <ClCompile Include="PlayerWriter.cpp" />
     <ClCompile Include="Scrabblegame.cpp" />
     <ClCompile Include="Slot.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TextWriter.cpp" />
     <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="TopPage.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AbstractPage.h" />
     <ClInclude Include="Board.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GameOver.h" />
+    <ClInclude Include="Guide.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Misc.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerReader.h" />
+    <ClInclude Include="PlayerWriter.h" />
     <ClInclude Include="Scrabblegame.h" />
     <ClInclude Include="Slot.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TextWriter.h" />
     <ClInclude Include="Timer.h" />
+    <ClInclude Include="TopPage.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -118,6 +130,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -152,6 +165,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

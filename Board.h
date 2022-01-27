@@ -23,6 +23,7 @@ private:
 	Button* lastBoardButtonClicked = nullptr;
 	std::vector<std::reference_wrapper<Texture>> textures;
 	Button* rerollButton;
+	bool firstLetter = true;
 
 public:
 	Board(Window*, sf::Font&, std::vector<std::reference_wrapper<Texture>>&);

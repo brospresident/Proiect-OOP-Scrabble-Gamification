@@ -25,6 +25,10 @@ int Player::getPlayerScore() {
 	return this->score;
 }
 
+int Player::getPlayerBestScore() {
+	return this->score;
+}
+
 int Player::getPlayerId() {
 	return this->id;
 }
@@ -35,6 +39,10 @@ void Player::setPlayerName(std::string playerName) {
 }
 
 void Player::setPlayerScore(int score) {
+	this->score += score;
+}
+
+void Player::setPlayerBestScore(int score) {
 	this->score = score;
 }
 

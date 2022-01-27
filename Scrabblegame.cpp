@@ -55,7 +55,7 @@ void ScrabbleGame::setDoubleWords() {
         board[14 - i][i].setBonus("2W");
     }
 
-    for (int j = 0; j < 14; j++) {
+    for (int j = 10; j < 14; j++) {
         board[j][j].setBonus("2W");
         board[14 - j][j].setBonus("2W");
     }
@@ -131,11 +131,6 @@ bool ScrabbleGame::isWord(std::string& word) {
     return false;
 }
 
-void ScrabbleGame::setChecked(std::vector<std::string> words) {
-    for (int i = 0; i < words.size(); i++) {
-        this->isChecked.push_back(false);
-    }
-}
 
 int ScrabbleGame::findScore(char board[15][15]) {
     this->score = 0;
@@ -157,13 +152,14 @@ int ScrabbleGame::findScore(char board[15][15]) {
                         }
                         else if (l == words[k].size() - 1)
                         {
+                            int counter2 = 0;
                             for (int counter = 0; counter < wordsFound.size(); counter++) {
                                 if (words[k] == wordsFound[counter]) { //duplicate checker
-                                    this->isChecked[counter] = true;
+                                    counter2++;
                                     break;
                                 }
                             }
-                            if (this->isChecked[k] == false) {
+                            if (counter2 == 0) {
                                 this->score += this->WordValue(words[k]);
                                 std::vector<int> location;
                                 location.push_back(i);
@@ -181,6 +177,5 @@ int ScrabbleGame::findScore(char board[15][15]) {
 }
 
 int ScrabbleGame::checkBoard(char data[15][15]) {
-    setChecked(getDictionary());
     return findScore(data);
 }

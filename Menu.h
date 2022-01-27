@@ -12,7 +12,7 @@ private:
 	sf::Event event;
 	Window* window;
 	sf::Font font;
-	Button* buttons[2];
+	Button* buttons[3];
 	
 public:
 	Menu(Window*, sf::Font&, std::vector<std::reference_wrapper<Texture>>);

@@ -138,6 +138,9 @@ void Board::handleBoardEvents() {
 		if (id == -1) return;
 
 		Button* clicked = this->findButtonById(id);
+		
+		if (this->firstLetter == true && id == 112) this->firstLetter = false;
+		if (this->firstLetter == true && id != 112 && clicked->getType() == misc.BUTTON_BOARD_SQUARE) return;
 
 		// REROLL
 		if (clicked->getType() == misc.BUTTON_REROLL) {

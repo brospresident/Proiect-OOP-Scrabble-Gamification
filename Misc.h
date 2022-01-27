@@ -14,6 +14,7 @@ public:
 	enum GamePhases {
 		Menu,
 		ShowingHelp,
+		ShowingTop,
 		RegisteringPlayer1,
 		Playing,
 		ShowingScore
@@ -27,7 +28,8 @@ public:
 		BUTTON_START_GAME,
 		BUTTON_HELP,
 		BUTTON_BACK,
-		BUTTON_SHOW_GUIDE
+		BUTTON_SHOW_GUIDE,
+		BUTTON_SHOW_TOP
 	};
 
 	// TODO support pentru cifre

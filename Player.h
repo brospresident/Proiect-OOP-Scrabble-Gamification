@@ -13,6 +13,7 @@ private:
 	int id;
 	std::string playerName;
 	int score = 0;
+	int bestScore = 0;
 
 public:
 	Player(std::string playerName, int id);
@@ -26,6 +27,8 @@ public:
 
 	int getPlayerId();
 
+	int getPlayerBestScore();
+
 	// setters
 	void setPlayerName(std::string playerName);
 
@@ -36,6 +39,8 @@ public:
 	void updateScore(int score1);
 
 	std::vector<TextWriter*> dataToString(const sf::Font& font, const float width, const float height);
+
+	void setPlayerBestScore(int best);
 };
 
 #endif // !_PLAYER_

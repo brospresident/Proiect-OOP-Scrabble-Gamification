@@ -18,7 +18,7 @@
 
 int main() {
     // Creating the game window
-    Window *window = new Window(1024, 768);
+    Window* window = new Window(1024, 768);
     Misc misc;
 
     int gamePhase = -1;
@@ -124,7 +124,7 @@ int main() {
                         player1 = Player(playerName, 0);
                     }
                     playerName.clear();
-                    if (gamePhase == misc.GamePhases::RegisteringPlayer1) 
+                    if (gamePhase == misc.GamePhases::RegisteringPlayer1)
                         gamePhase = misc.GamePhases::Playing;
                 }
                 // BACKSPACE functionality to remove a character when typing name
@@ -152,7 +152,7 @@ int main() {
 
                 gameInstance->resetTimer();
 
-          
+
             }
             else if (gamePhase == misc.GamePhases::ShowingHelp) {
                 Guide guide(window, textures, gameFont);
@@ -171,7 +171,7 @@ int main() {
 
                 gameInstance->resetTimer();
 
-              
+
             }
             else if (gamePhase == misc.GamePhases::Playing) {
                 std::vector<TextWriter*> d1 = player1.dataToString(gameFont, window->getWidth(), window->getHeight());
@@ -213,5 +213,5 @@ int main() {
     delete gameInstance;
     // delete gameBoard;
 
-	return 0;
+    return 0;
 }

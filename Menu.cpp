@@ -5,7 +5,7 @@ Menu::Menu(Window* window, sf::Font& font, std::vector<std::reference_wrapper<Te
 	this->font = font;
 
 	this->buttons[0] = new Button(400, "Start Game", this->window->getWidth() / 2 - 100.0f, this->window->getHeight() / 2 - 60.0f, 200.0f, 40.0f, Misc::ButtonTypes::BUTTON_START_GAME, this->font, this->window, textures[5]);
-	this->buttons[1] = new Button(400, "Guide", this->window->getWidth() / 2 - 100.0f, this->window->getHeight() / 2 , 200.0f, 40.0f, Misc::ButtonTypes::BUTTON_SHOW_GUIDE, this->font, this->window, textures[5]);
+	this->buttons[1] = new Button(400, "Guide", this->window->getWidth() / 2 - 100.0f, this->window->getHeight() / 2, 200.0f, 40.0f, Misc::ButtonTypes::BUTTON_SHOW_GUIDE, this->font, this->window, textures[5]);
 	this->buttons[2] = new Button(400, "Top 5 players", this->window->getWidth() / 2 - 100.0f, this->window->getHeight() / 2 + 60.0f, 200.0f, 40.0f, Misc::ButtonTypes::BUTTON_SHOW_TOP, this->font, this->window, textures[5]);
 }
 

@@ -18,7 +18,7 @@
 
 int main() {
     // Creating the game window
-    Window *window = new Window(1024, 768);
+    Window* window = new Window(1024, 768);
     Misc misc;
 
     int gamePhase = -1;
@@ -43,8 +43,8 @@ int main() {
 
     Texture randomLetter("assets/textures/5.jpg", 0, 0, 0, 0);
     Texture doubleLetterTexture("assets/textures/12.png", 0, 0, 0, 0);
-    Texture tripleLetterTexture("assets/textures/4.4.png", 0, 0, 0, 0);
-    Texture doubleWordTexture("assets/textures/7.7.png", 0, 0, 0, 0);
+    Texture tripleLetterTexture("assets/textures/7.7.png", 0, 0, 0, 0);
+    Texture doubleWordTexture("assets/textures/10.10.png", 0, 0, 0, 0);
     Texture classicTexture("assets/textures/2.2.png", 0, 0, 0, 0);
     Texture tripleWordsTexture("assets/textures/3.3.png", 0, 0, 0, 0);
     Texture darkblue("assets/textures/11.png", 0, 0, 0, 0);
@@ -124,7 +124,7 @@ int main() {
                         player1 = Player(playerName, 0);
                     }
                     playerName.clear();
-                    if (gamePhase == misc.GamePhases::RegisteringPlayer1) 
+                    if (gamePhase == misc.GamePhases::RegisteringPlayer1)
                         gamePhase = misc.GamePhases::Playing;
                 }
                 // BACKSPACE functionality to remove a character when typing name
@@ -152,12 +152,16 @@ int main() {
 
                 gameInstance->resetTimer();
 
-          
+
             }
             else if (gamePhase == misc.GamePhases::ShowingHelp) {
                 Guide guide(window, textures, gameFont);
                 guide.setEvent(event);
                 gamePhase = guide.handleClick();
+
+                TextWriter gameTitle("Game Guide", 100, gameFont, window->getWidth() / 2 - 160.0f, 40.0f);
+                gameTitle.setColorRed();
+                window->drawText(gameTitle.text);
             }
             else if (gamePhase == misc.GamePhases::RegisteringPlayer1) {
                 TextWriter playerNameInput("Please type in your name: ", 15, gameFont, window->getWidth() / 2, window->getHeight() / 4.0f);
@@ -165,13 +169,13 @@ int main() {
                 window->drawText(playerNameInput.text);
                 window->drawText(inputPreview.text);
 
-                TextWriter gameTitle("Scrabble", 35, gameFont, window->getWidth() / 2 - 35.0f, 20.0f);
+                TextWriter gameTitle("Scrabble", 70, gameFont, window->getWidth() / 2 -90.f , 20.0f);
                 gameTitle.setColorRed();
                 window->drawText(gameTitle.text);
 
                 gameInstance->resetTimer();
 
-              
+
             }
             else if (gamePhase == misc.GamePhases::Playing) {
                 std::vector<TextWriter*> d1 = player1.dataToString(gameFont, window->getWidth(), window->getHeight());
@@ -213,5 +217,5 @@ int main() {
     delete gameInstance;
     // delete gameBoard;
 
-	return 0;
+    return 0;
 }

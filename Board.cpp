@@ -24,7 +24,7 @@ Board::Board(Window* w, sf::Font& f, std::vector<std::reference_wrapper<Texture>
 				|| (i == 12 && j == 6) || (i == 12 && j == 8) || (i == 14 && j == 3) || (i == 14 && j == 11)) {
 				btn = new Button(id, "", this->startPosX + (j * this->rightMove), this->startPosY + (i * this->downMove), 20.0f, 20.0f, Misc::ButtonTypes::BUTTON_BOARD_SQUARE, f, w, textures[1]);
 			}
-			else if ((i == 1 && j == 5) || (i == 1 && j == 9) || (i == 5 && j == 1) || (i == 5 && j == 5) || (i == 5 && j == 9) || (i == 5 && j == 13) || (i == 9 && j == 1) 
+			else if ((i == 1 && j == 5) || (i == 1 && j == 9) || (i == 5 && j == 1) || (i == 5 && j == 5) || (i == 5 && j == 9) || (i == 5 && j == 13) || (i == 9 && j == 1)
 				|| (i == 9 && j == 5) || (i == 9 && j == 9) || (i == 9 && j == 13) || (i == 13 && j == 5) || (i == 13 && j == 9)) {
 				btn = new Button(id, "", this->startPosX + (j * this->rightMove), this->startPosY + (i * this->downMove), 20.0f, 20.0f, Misc::ButtonTypes::BUTTON_BOARD_SQUARE, f, w, textures[2]);
 			}
@@ -37,7 +37,7 @@ Board::Board(Window* w, sf::Font& f, std::vector<std::reference_wrapper<Texture>
 		this->board[i][i]->setTexture(textures[3]);
 		this->board[14 - i][i]->setTexture(textures[3]);
 	}
-	for (int j = 0; j < 14; j++) {
+	for (int j = 10; j < 14; j++) {
 		this->board[j][j]->setTexture(textures[3]);
 		this->board[14 - j][j]->setTexture(textures[3]);
 	}
@@ -54,7 +54,7 @@ Board::Board(Window* w, sf::Font& f, std::vector<std::reference_wrapper<Texture>
 }
 
 void Board::initBoard() {
-	
+
 }
 
 void Board::setEvent(sf::Event& event) {
@@ -138,7 +138,7 @@ void Board::handleBoardEvents() {
 		if (id == -1) return;
 
 		Button* clicked = this->findButtonById(id);
-		
+
 		if (this->firstLetter == true && id == 112) this->firstLetter = false;
 		if (this->firstLetter == true && id != 112 && clicked->getType() == misc.BUTTON_BOARD_SQUARE) return;
 
@@ -200,4 +200,3 @@ void Board::printData() {
 		std::cout << std::endl;
 	}
 }
-

@@ -1,10 +1,12 @@
-﻿  Board.cpp
-C:\Users\badoi\Documents\GitHub\Proiect-OOP-Scrabble-Gamification\Board.cpp(11,104): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
-C:\Users\badoi\Documents\GitHub\Proiect-OOP-Scrabble-Gamification\Board.cpp(11,59): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
-C:\Users\badoi\Documents\GitHub\Proiect-OOP-Scrabble-Gamification\Board.cpp(25,87): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
-C:\Users\badoi\Documents\GitHub\Proiect-OOP-Scrabble-Gamification\Board.cpp(25,46): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
-C:\Users\badoi\Documents\GitHub\Proiect-OOP-Scrabble-Gamification\Board.cpp(29,87): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
-C:\Users\badoi\Documents\GitHub\Proiect-OOP-Scrabble-Gamification\Board.cpp(29,46): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
-C:\Users\badoi\Documents\GitHub\Proiect-OOP-Scrabble-Gamification\Board.cpp(31,91): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
-C:\Users\badoi\Documents\GitHub\Proiect-OOP-Scrabble-Gamification\Board.cpp(31,50): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+﻿  main.cpp
+C:\Users\badoi\Documents\GitHub\Proiect-OOP-Scrabble-Gamification\main.cpp(84,96): warning C4244: 'argument': conversion from 'float' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+C:\Users\badoi\Documents\GitHub\Proiect-OOP-Scrabble-Gamification\main.cpp(84,75): warning C4244: 'argument': conversion from 'float' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
   ScrabbleGame.vcxproj -> C:\Users\badoi\Documents\GitHub\Proiect-OOP-Scrabble-Gamification\x64\Debug\ScrabbleGame.exe

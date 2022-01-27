@@ -2,8 +2,8 @@
 
 Timer::Timer(sf::Font& const renderFont, Window* window) {
 	this->renderFont = renderFont;
-	//this->totalTime = 30 * 60000;
-	this->totalTime = 30 * 1000;
+	this->totalTime = 30 * 60000;
+	//this->totalTime = 30 * 1000;
 	this->window = window;
 }
 

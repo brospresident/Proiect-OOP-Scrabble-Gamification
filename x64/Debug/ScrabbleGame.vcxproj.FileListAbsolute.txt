@@ -1,1 +1,2 @@
 D:\ScrabbleGame\x64\Debug\ScrabbleGame.exe
+C:\Users\badoi\Documents\GitHub\Proiect-OOP-Scrabble-Gamification\x64\Debug\ScrabbleGame.exe

@@ -15,7 +15,6 @@
 #include "PlayerReader.h"
 #include "PlayerWriter.h"
 #include "TopPage.h"
-#include "Credits.h"
 
 int main() {
     // Creating the game window
@@ -74,9 +73,6 @@ int main() {
 
     // Creating top page
     TopPage topPage(window, textures, gameFont);
-
-    // Creating credits page
-    Credits credits(window, textures, gameFont);
 
     // gameloop
     while (window->isOpen()) {
@@ -173,7 +169,7 @@ int main() {
                 window->drawText(playerNameInput.text);
                 window->drawText(inputPreview.text);
 
-                TextWriter gameTitle("Scrabble", 70, gameFont, window->getWidth() / 2 - 90.f, 20.0f);
+                TextWriter gameTitle("Scrabble", 70, gameFont, window->getWidth() / 2 -90.f , 20.0f);
                 gameTitle.setColorRed();
                 window->drawText(gameTitle.text);
 
@@ -206,17 +202,11 @@ int main() {
                 GameOver gOver(window, textures, gameFont, player1);
                 gOver.setEvent(event);
                 gOver.displayContent();
-                gamePhase = gOver.handleClick();
                 PlayerWriter writer;
                 writer.writeData(player1);
             }
             else if (gamePhase == misc.GamePhases::ShowingTop) {
                 topPage.setEvent(event);
-                gamePhase = topPage.handleClick();
-            }
-            else if (gamePhase == misc.GamePhases::Credits) {
-                credits.setEvent(event);
-                gamePhase = credits.handleClick();
             }
 
             window->display();

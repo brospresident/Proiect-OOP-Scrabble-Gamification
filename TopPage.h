@@ -20,6 +20,7 @@ public:
 	void readPlayersData();
 	void setEvent(sf::Event ev);
 	void displayContent();
+	int handleClick();
 };
 
 #endif

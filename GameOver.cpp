@@ -22,3 +22,11 @@ void GameOver::displayContent() {
 
 	delete gOver, message;
 }
+
+int GameOver::handleClick() {
+	if (this->backButton->clicked()) {
+		return Misc::GamePhases::Menu;
+	}
+
+	return Misc::GamePhases::ShowingScore;
+}

@@ -27,7 +27,7 @@ void Guide::createTexts() {
 	TextWriter* tw5 = new TextWriter("That colors represent a bonus and I will describe them below.", 17, this->gameFont, this->window->getWidth() / 2 - 150, this->startPosY + 4 * this->moveY);
 	TextWriter* tw6 = new TextWriter("The CYAN color will multiply the word's points by three.", 17, this->gameFont, this->window->getWidth() / 2 - 150, this->startPosY + 5 * this->moveY);
 	TextWriter* tw7 = new TextWriter("The PINK color is the starting position.", 17, this->gameFont, this->window->getWidth() / 2 - 150, this->startPosY + 6 * this->moveY);
-	TextWriter* tw8 = new TextWriter("The DARK BLUE color will multiply the word's points by two.", 17, this->gameFont, this->window->getWidth() / 2 - 150, this->startPosY + 7 * this->moveY);
+	TextWriter* tw8 = new TextWriter("The MAUVE color will multiply the word's points by two.", 17, this->gameFont, this->window->getWidth() / 2 - 150, this->startPosY + 7 * this->moveY);
 	TextWriter* tw9 = new TextWriter("The LIGHT BLUE color will multiply the letter's points by two.", 17, this->gameFont, this->window->getWidth() / 2 - 150, this->startPosY + 8 * this->moveY);
 	TextWriter* tw10 = new TextWriter("The NAVY BLUE color will multiply the letter's points by three.", 17, this->gameFont, this->window->getWidth() / 2 - 150, this->startPosY + 9 * this->moveY);
 

@@ -12,6 +12,7 @@ public:
 	void displayContent();
 	Player player;
 	sf::Font font;
+	int handleClick();
 };
 
 #endif

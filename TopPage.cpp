@@ -30,6 +30,7 @@ void TopPage::setEvent(sf::Event ev) {
 }
 
 void TopPage::displayContent() {
+	this->backButton->drawButton();
 	TextWriter* tw1 = new TextWriter("Top players", 17, this->font, this->window->getWidth() / 2, 200);
 	this->window->drawText(tw1->text);
 
@@ -59,4 +60,12 @@ void TopPage::displayContent() {
 		delete writers[i];
 	}
 
+}
+
+int TopPage::handleClick() {
+	if (this->backButton->clicked()) {
+		return Misc::GamePhases::Menu;
+	}
+
+	return Misc::GamePhases::ShowingTop;
 }

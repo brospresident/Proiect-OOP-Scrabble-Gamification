@@ -17,7 +17,8 @@ public:
 		ShowingTop,
 		RegisteringPlayer1,
 		Playing,
-		ShowingScore
+		ShowingScore,
+		Credits
 	};
 
 	enum ButtonTypes {
@@ -29,7 +30,8 @@ public:
 		BUTTON_HELP,
 		BUTTON_BACK,
 		BUTTON_SHOW_GUIDE,
-		BUTTON_SHOW_TOP
+		BUTTON_SHOW_TOP,
+		BUTTON_SHOW_CREDITS
 	};
 
 	// TODO support pentru cifre

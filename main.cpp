@@ -163,7 +163,7 @@ int main() {
                 guide.setEvent(event);
                 gamePhase = guide.handleClick();
 
-                TextWriter gameTitle("Game Guide", 100, gameFont, window->getWidth() / 2 - 160.0f, 40.0f);
+                TextWriter gameTitle("Game Guide", 100, gameFont, window->getWidth() / 2 - 270.0f, 40.0f);
                 gameTitle.setColorRed();
                 window->drawText(gameTitle.text);
             }

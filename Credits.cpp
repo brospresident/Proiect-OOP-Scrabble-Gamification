@@ -29,7 +29,7 @@ void Credits::displayContent() {
 	TextWriter* credits6 = new TextWriter("Apostolescu Mihnea", 15, this->font, this->window->getWidth() / 2 - 400, 430);
 	TextWriter* credits7 = new TextWriter("Raceanu Andrei", 15, this->font, this->window->getWidth() / 2 - 400, 450);
 	TextWriter* credits8 = new TextWriter("Teachers: M. Caramihai & Daniel Chis", 15, this->font, this->window->getWidth() / 2 - 450, 470);
-	TextWriter* credits9 = new TextWriter("Project title: BOOSTING SUSTAINABLE DIGITAL EDUCATION FOR EUROPEAN UNIVERSITIES", 17, this->font, this->window->getWidth() / 2 - 400, 250);
+	TextWriter* credits9 = new TextWriter("ERASMUS+: Project title: BOOSTING SUSTAINABLE DIGITAL EDUCATION FOR EUROPEAN UNIVERSITIES", 17, this->font, this->window->getWidth() / 2 - 400, 250);
 	TextWriter* credits10 = new TextWriter("CREDITS", 100, this->font, this->window->getWidth() / 2 - 200, 100);
 
 	
@@ -48,4 +48,14 @@ void Credits::displayContent() {
 	this->backButton->drawButton();
 
 	delete credits;
+	delete credits1;
+	delete credits2;
+	delete credits3;
+	delete credits4;
+	delete credits5;
+	delete credits6;
+	delete credits7;
+	delete credits8;
+	delete credits9;
+	delete credits10;
 }

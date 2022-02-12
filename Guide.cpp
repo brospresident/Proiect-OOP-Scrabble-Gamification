@@ -34,7 +34,6 @@ void Guide::createTexts() {
 	TextWriter* tw12 = new TextWriter("https://slejournal.springeropen.com/articles/10.1186/s40561-019-0098-x    and ", 17, this->gameFont, this->window->getWidth() / 2 - 450, this->startPosY + 13 * this->moveY);
 	TextWriter* tw13 = new TextWriter("https://educationaltechnologyjournal.springeropen.com/articles/10.1186/s41239-017-0042-5", 17, this->gameFont, this->window->getWidth() / 2 - 450, this->startPosY + 14 * this->moveY);
 	TextWriter* tw14 = new TextWriter("The REROLL button will generate a new set of 7 random letters.", 17, this->gameFont, this->window->getWidth() / 2 - 450, this->startPosY + 10 * this->moveY);
-	
 
 	this->messages.push_back(tw1);
 	this->messages.push_back(tw2);
